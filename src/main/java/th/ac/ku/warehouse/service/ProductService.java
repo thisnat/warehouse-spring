@@ -26,4 +26,10 @@ public class ProductService {
         return Arrays.asList(products);
     }
 
+    public void addProduct(Product product) {
+        String url = "http://localhost:3001/api/import/";
+
+        restTemplate.postForObject(url, product, Product.class);
+    }
+
 }

@@ -1,10 +1,12 @@
 package th.ac.ku.warehouse.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.Nullable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
     String name,note,createDate;
+    @Nullable
     int id,safetyStock,quantity;
     double price;
 
