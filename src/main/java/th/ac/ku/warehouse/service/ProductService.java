@@ -26,6 +26,16 @@ public class ProductService {
         return Arrays.asList(products);
     }
 
+    public List<Product> getProduct(int id){
+        String url = "http://localhost:3001/api/products/"+id;
+
+        ResponseEntity<Product[]> response =
+                restTemplate.getForEntity(url, Product[].class);
+
+        Product[] products = response.getBody();
+        return Arrays.asList(products);
+    }
+
     public void addProduct(Product product) {
         String url = "http://localhost:3001/api/import/";
 
