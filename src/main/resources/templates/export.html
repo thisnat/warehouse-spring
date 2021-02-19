@@ -5,32 +5,6 @@
 <div class="container mt-3" layout:fragment="content">
     <h1>export page</h1>
     <div class="mt-3">
-        <p class="lead">your export list</p>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-light">
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>quantity</th>
-                    <th>price</th>
-                    <th>safety stock</th>
-                    <th>action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product : ${cartList}">
-                    <td th:text="${product.id}"></td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.quantity}"></td>
-                    <td th:text="${product.price}"></td>
-                    <td th:text="${product.safetyStock}"></td>
-                    <td>
-                        <a class="btn btn-danger">remove</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
         <p class="lead">all product list</p>
         <table class="table table-bordered table-striped">
             <thead class="thead-light">
@@ -40,7 +14,7 @@
                     <th>quantity</th>
                     <th>price</th>
                     <th>safety stock</th>
-                    <th>action</th>
+                    <th>#</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,12 +25,43 @@
                     <td th:text="${product.price}"></td>
                     <td th:text="${product.safetyStock}"></td>
                     <td>
-                        <a class="btn btn-success" th:href="@{/export/cart/{id}(id=${product.id})}">Add (${product.quantity})</a>
+                        <a class="btn btn-success" th:href="@{/export/add/{id}(id=${product.id})}">export</a>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ต้องการนำออกสินค้าชิ้นนี้ ?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Export</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('.table .btn').on('click',function(e){
+                    e.preventDefault();
+                    let href = $(this).attr('href');
+
+                    $.get(href,function(product){
+                        console.log(product.id);
+                        console.log(product.name);
+                    });
+
+                    $('#myModal').modal('show');
+                });
+            });
+        </script>
     </div>
 </div>
-
 </html>
