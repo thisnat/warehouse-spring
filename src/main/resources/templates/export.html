@@ -38,7 +38,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <p class="lead" id="productName">test</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -48,14 +48,12 @@
             </div>
         </div>
         <script>
-            $(document).ready(function(){
-                $('.table .btn').on('click',function(e){
+            $(document).ready(function () {
+                $('.table .btn').on('click', function (e) {
                     e.preventDefault();
                     let href = $(this).attr('href');
-
-                    $.get(href,function(product){
-                        console.log(product.id);
-                        console.log(product.name);
+                    $.get(href, function (product) {
+                        $('#productName').text(product.name);
                     });
 
                     $('#myModal').modal('show');
@@ -64,4 +62,5 @@
         </script>
     </div>
 </div>
+
 </html>
