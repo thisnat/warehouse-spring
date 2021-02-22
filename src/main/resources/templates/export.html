@@ -25,7 +25,7 @@
                     <td th:text="${product.price}"></td>
                     <td th:text="${product.safetyStock}"></td>
                     <td>
-                        <a class="btn btn-success" th:href="@{/export/add/{id}(id=${product.id})}">export</a>
+                        <a class="btn btn-success" th:href="@{/export/get/{id}(id=${product.id})}">export</a>
                     </td>
                 </tr>
             </tbody>
@@ -37,12 +37,13 @@
                         <h5 class="modal-title" id="exampleModalLabel">ต้องการนำออกสินค้าชิ้นนี้ ?</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <p class="lead" id="productName"></p>
-                        <p id="productSafe"></p>
+                    <div class="modal-body" id="modalBody">
+                        <p class="lead" id="productName" style="font-size: 24px;"></p>
+                        <span class="badge bg-primary" id="productQuantity"></span>
+                        <span class="badge bg-success" id="productSafe"></span>
                         <hr>
                         <p>จำนวนสินค้าที่ต้องการนำออก</p>
-                        <input type="number" min="1" max="999" value="1" id="sQuantity">
+                        <input type="number" min="1" max="999" value="1" id="sQuantity" name="quantity">  ชิ้น
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -51,35 +52,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function () {
-                let pProduct = null;
-
-                $('.table .btn').on('click', function (e) {
-                    e.preventDefault();
-                    let href = $(this).attr('href');
-                    $.get(href, function (product) {
-                        pProduct = product;
-                        $('#productName').text(`${product.name} (current ${product.quantity} ea)`);
-                        $('#productSafe').text(`safety stock : ${product.safetyStock}`);
-                    });
-
-                    $('#myModal').modal('show');
-                });
-
-                $('#exportBtn').on('click', function (e) {
-                    e.preventDefault();
-                    let sq = $('#sQuantity').val();
-                    
-                    if(pProduct.quantity >= sq){
-                        console.log('yes');
-                    }
-                    else{
-                        console.log('nope');
-                    }
-                });
-            });
-        </script>
+        <script th:src="@{/js/warehouse/export.js}"></script>
         <script>
             document.querySelector("input").addEventListener("keydown", function (event) {
                 if (event.which === 69) {

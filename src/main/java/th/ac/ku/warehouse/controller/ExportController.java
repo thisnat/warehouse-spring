@@ -22,15 +22,27 @@ public class ExportController {
     }
 
     @GetMapping
-    public String getImportPage(Model model) {
+    public String getExportPage(Model model) {
         productList = productService.getProducts();
         model.addAttribute("products", productList);
         return "export";
     }
 
-    @RequestMapping("/add/{id}")
+    //not use
+    @PostMapping("/update/{id}")
+    public String exportProduct(@ModelAttribute Product product,
+                                @PathVariable int id,
+                                @RequestParam("quantity") int quantity,
+                                Model model) {
+        product.setQuantity(quantity);
+        productService.updateProduct(product);
+
+        return "redirect:export";
+    }
+
+    @RequestMapping("/get/{id}")
     @ResponseBody
-    public Product addCartList(@PathVariable int id, Model model) {
+    public Product getProduct(@PathVariable int id, Model model) {
         return productService.getProduct(id).get(0);
     }
 }

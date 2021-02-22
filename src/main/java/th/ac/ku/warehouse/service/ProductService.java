@@ -37,9 +37,16 @@ public class ProductService {
     }
 
     public void addProduct(Product product) {
-        String url = "http://localhost:3001/api/import/";
+        String url = "http://localhost:3001/api/products/add";
 
         restTemplate.postForObject(url, product, Product.class);
+    }
+
+    public void updateProduct(Product product) {
+        String url = "http://localhost:3001/api/products/" +
+                product.getId();
+
+        restTemplate.put(url,product);
     }
 
 }
