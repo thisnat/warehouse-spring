@@ -14,17 +14,20 @@ import java.util.List;
 @RequestMapping("/export")
 public class ExportController {
     private ProductService productService;
-    private List<Product> productList;
+    private List<Product> productList,cartList;
 
-    public ExportController(ProductService productService, List<Product> productList){
+    public ExportController(ProductService productService, List<Product> productList, List<Product> cartList) {
         this.productService = productService;
         this.productList = productList;
+        this.cartList = cartList;
     }
 
     @GetMapping
     public String getExportPage(Model model) {
         productList = productService.getProducts();
+        cartList = productService.getProductCart();
         model.addAttribute("products", productList);
+        model.addAttribute("cart",cartList);
         return "export";
     }
 

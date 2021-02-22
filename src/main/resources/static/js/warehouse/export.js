@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    let pProduct = null;
+    let pProduct = null; //select product
 
-    $('.table .btn').on('click', function (e) {
+    //add button
+    $('.table .btn.btn-success').on('click', function (e) {
         e.preventDefault();
         let href = $(this).attr('href');
         $.get(href, function (product) {
@@ -16,6 +17,7 @@ $(document).ready(function () {
         $('#myModal').modal('show');
     });
 
+    //export button
     $('#exportBtn').on('click', function (e) {
         e.preventDefault();
         let sq = $('#sQuantity').val(); //input quantity
@@ -26,16 +28,25 @@ $(document).ready(function () {
                 type: 'PUT',
                 url: 'http://localhost:3001/api/products/' + pProduct.id,
                 contentType: 'application/json',
-                data: JSON.stringify(data),
+                data: JSON.stringify(data)
             }).done((res) => {
-                console.log(res);
-                if(res == 0){
+                if (res == 0) {
                     $.ajax({
                         type: 'DELETE',
                         url: 'http://localhost:3001/api/products/' + pProduct.id,
                         contentType: 'application/json'
                     })
                 }
+                let cart = {
+                    "name": pProduct.name, "quantity": sq, "price": pProduct.quantity,
+                    "safetyStock": pProduct.safetyStock, "note": pProduct.note, "productId": pProduct.id
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3001/api/cart/add/',
+                    contentType: 'application/json',
+                    data: JSON.stringify(cart)
+                })
                 window.location.href = 'http://localhost:8080/export/';
             });
         }

@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import th.ac.ku.warehouse.model.Product;
+import th.ac.ku.warehouse.model.ProductCart;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,16 @@ public class ProductService {
                 restTemplate.getForEntity(url, Product[].class);
 
         Product[] products = response.getBody();
+        return Arrays.asList(products);
+    }
+
+    public List<Product> getProductCart() {
+        String url = "http://localhost:3001/api/cart/";
+
+        ResponseEntity<ProductCart[]> response =
+                restTemplate.getForEntity(url, ProductCart[].class);
+
+        ProductCart[] products = response.getBody();
         return Arrays.asList(products);
     }
 

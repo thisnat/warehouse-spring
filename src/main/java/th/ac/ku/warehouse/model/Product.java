@@ -5,10 +5,10 @@ import org.springframework.lang.Nullable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
-    String name,note,createDate;
+    private String name,note,createDate;
     @Nullable
-    int id,safetyStock,quantity;
-    double price;
+    private int id,safetyStock,quantity;
+    private double price;
 
     public Product(String name, String note, String createDate, int id, int safetyStock, int quantity, double price) {
         this.name = name;
