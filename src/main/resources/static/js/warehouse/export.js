@@ -20,7 +20,7 @@ $(document).ready(function () {
         e.preventDefault();
         let sq = $('#sQuantity').val(); //input quantity
 
-        if (pProduct.quantity >= sq) {
+        if (pProduct.quantity >= sq && sq != "") {
             let data = { "quantity": pProduct.quantity - sq }
             $.ajax({
                 type: 'PUT',
