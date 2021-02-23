@@ -27,7 +27,7 @@ public class ProductService {
         return Arrays.asList(products);
     }
 
-    public List<Product> getProductCart() {
+    public List<ProductCart> getProductCart() {
         String url = "http://localhost:3001/api/cart/";
 
         ResponseEntity<ProductCart[]> response =
@@ -47,6 +47,16 @@ public class ProductService {
         return Arrays.asList(products);
     }
 
+    public List<ProductCart> getProductCartById(int id){
+        String url = "http://localhost:3001/api/cart/"+id;
+
+        ResponseEntity<ProductCart[]> response =
+                restTemplate.getForEntity(url, ProductCart[].class);
+
+        ProductCart[] products = response.getBody();
+        return Arrays.asList(products);
+    }
+
     public void addProduct(Product product) {
         String url = "http://localhost:3001/api/products/add";
 
@@ -60,4 +70,8 @@ public class ProductService {
         restTemplate.put(url,product);
     }
 
+    public void removeCartItem(int id){
+        String url = "http://localhost:3001/api/cart/"+id;
+        restTemplate.delete(url);
+    }
 }

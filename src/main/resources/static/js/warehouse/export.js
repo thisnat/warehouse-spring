@@ -54,4 +54,16 @@ $(document).ready(function () {
             $('#modalBody').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">กรุณาใส่จำนวนให้ถูกต้อง</div>`);
         }
     });
+
+    //remove btn
+    $('.table .btn.btn-danger').on('click', function(e){
+        e.preventDefault();
+        let href = $(this).attr('href');
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080' + href,
+            contentType: 'application/json'
+        })
+        window.location.href = 'http://localhost:8080/export/';
+    });
 });

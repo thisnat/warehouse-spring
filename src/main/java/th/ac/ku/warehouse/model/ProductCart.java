@@ -15,4 +15,11 @@ public class ProductCart extends Product{
     public int getProductId() {
         return productId;
     }
+
+    @Override
+    public String toString() {
+        return "ProductCart{" +
+                "productId=" + productId +
+                '}';
+    }
 }
