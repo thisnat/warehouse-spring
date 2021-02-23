@@ -3,55 +3,53 @@
     xmlns:th="https://www.thymeleaf.org">
 
 <div class="container mt-3" layout:fragment="content">
-    <h1>export page</h1>
-    <div class="mt-3">
-        <p class="lead">export list<button class="btn btn-primary" style="float: right;">export</button></p>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-light">
+    <h1>Product Export (นำออกสินค้า)</h1>
+    <div class="mt-4">
+        <p class="lead mb-4">🛒 Export list (รายการนำออก)<button class="btn btn-primary" style="float: right;">นำออก</button></p>
+        <table class="table table-bordered table-striped mb-4">
+            <thead class="table-dark">
                 <tr>
                     <th>id</th>
-                    <th>name</th>
-                    <th>quantity</th>
-                    <th>price</th>
-                    <th>safety stock</th>
+                    <th>ชื่อสินค้า</th>
+                    <th style="text-align: right;">จำนวน (ชิ้น)</th>
+                    <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
                     <th>#</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="product : ${cart}">
                     <td th:text="${product.productId}"></td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.quantity}"></td>
-                    <td th:text="${product.price}"></td>
-                    <td th:text="${product.safetyStock}"></td>
+                    <td th:text="${product.name}" style="font-size: 20px;"></td>
+                    <td th:text="${product.quantity}" style="text-align: right;"></td>
+                    <td th:text="${product.price}" style="text-align: right;"></td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{/export/remove/{id}(id=${product.id})}">remove</a>
+                        <a class="btn btn-danger" th:href="@{/export/remove/{id}(id=${product.id})}">ลบรายการ</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <hr>
-        <p class="lead">all product list</p>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-light">
+        <p class="lead mt-4 mb-4">📋 Product list (รายการสินค้า)</p>
+        <table id="productList" class="cell-border stripe order-column hover">
+            <thead>
                 <tr>
                     <th>id</th>
-                    <th>name</th>
-                    <th>quantity</th>
-                    <th>price</th>
-                    <th>safety stock</th>
+                    <th>ชื่อสินค้า</th>
+                    <th style="text-align: right;">จำนวน (ชิ้น)</th>
+                    <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
+                    <th style="text-align: center;">safety stock</th>
                     <th>#</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="product : ${products}">
                     <td th:text="${product.id}"></td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.quantity}"></td>
-                    <td th:text="${product.price}"></td>
-                    <td th:text="${product.safetyStock}"></td>
+                    <td th:text="${product.name}" style="font-size: 20px;"></td>
+                    <td th:text="${product.quantity}" style="text-align: right;"></td>
+                    <td th:text="${product.price}" style="text-align: right;"></td>
+                    <td th:text="${product.safetyStock}" style="text-align: center;font-weight: bold;"></td>
                     <td>
-                        <a class="btn btn-success" th:href="@{/export/get/{id}(id=${product.id})}">add</a>
+                        <a class="btn btn-success" th:href="@{/export/get/{id}(id=${product.id})}">เพิ่มรายการ</a>
                     </td>
                 </tr>
             </tbody>

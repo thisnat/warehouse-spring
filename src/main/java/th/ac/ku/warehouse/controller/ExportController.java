@@ -36,20 +36,22 @@ public class ExportController {
     @PostMapping("/remove/{id}")
     @ResponseBody
     public String removeCartList(@PathVariable int id,Model model) {
-        //productService.removeCartItem(id);
-
-        //update export list
         Product product;
         ProductCart productCart = productService.getProductCartById(id).get(0);
         try{
             product = productService.getProduct(productCart.getProductId()).get(0);
+            Product upProduct = new Product(productCart.getName(),productCart.getNote(),productCart.getCreateDate(),
+                    productCart.getProductId(),productCart.getSafetyStock(),productCart.getQuantity()+product.getQuantity(),productCart.getPrice());
+            productService.updateProduct(upProduct);
 
         }catch(Exception e){
             Product reProduct = new Product(productCart.getName(),productCart.getNote(),productCart.getCreateDate(),
                     productCart.getProductId(),productCart.getSafetyStock(),productCart.getQuantity(),productCart.getPrice());
-
+            productService.addProduct(reProduct);
+            productService.removeCartItem(id);
             return new Product(null,null,null,0,0,0,0).toString();
         }
+        productService.removeCartItem(id);
         return productCart.toString();
     }
 

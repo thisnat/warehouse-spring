@@ -1,8 +1,11 @@
 $(document).ready(function () {
     let pProduct = null; //select product
 
+    //table
+    $('#productList').DataTable();
+
     //add button
-    $('.table .btn.btn-success').on('click', function (e) {
+    $('.btn.btn-success').on('click', function (e) {
         e.preventDefault();
         let href = $(this).attr('href');
         $.get(href, function (product) {
@@ -22,7 +25,7 @@ $(document).ready(function () {
         e.preventDefault();
         let sq = $('#sQuantity').val(); //input quantity
 
-        if (pProduct.quantity >= sq && sq != "") {
+        if (pProduct.quantity >= sq && sq != "" && sq != 0) {
             let data = { "quantity": pProduct.quantity - sq }
             $.ajax({
                 type: 'PUT',
@@ -51,19 +54,21 @@ $(document).ready(function () {
             });
         }
         else {
+            $('#errA').remove();
             $('#modalBody').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">กรุณาใส่จำนวนให้ถูกต้อง</div>`);
         }
     });
 
     //remove btn
-    $('.table .btn.btn-danger').on('click', function(e){
+    $('.table .btn.btn-danger').on('click', function (e) {
         e.preventDefault();
         let href = $(this).attr('href');
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080' + href,
             contentType: 'application/json'
-        })
-        window.location.href = 'http://localhost:8080/export/';
+        }).done((res) => {
+            window.location.href = 'http://localhost:8080/export/';
+        });
     });
 });
