@@ -24,7 +24,6 @@ $(document).ready(function () {
             $('#productName').text(product.name);
             $('#productQuantity').text(`${product.quantity} ชิ้น`);
             $('#productSafe').text(`safety stock : ${product.safetyStock}`);
-            //$('.form').attr('th:action', `/export/update/${product.id}`)
         });
         $('#sQuantity').val("1");
         $('#errA').remove();
