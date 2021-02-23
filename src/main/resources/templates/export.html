@@ -19,7 +19,7 @@
             <tbody>
                 <tr th:each="product : ${cart}">
                     <td th:text="${product.productId}"></td>
-                    <td th:text="${product.name}" style="font-size: 20px;"></td>
+                    <td th:text="${product.name}" style="font-size: 19px;"></td>
                     <td th:text="${product.quantity}" style="text-align: right;"></td>
                     <td th:text="${product.price}" style="text-align: right;"></td>
                     <td style="text-align: center;">
@@ -44,7 +44,7 @@
             <tbody>
                 <tr th:each="product : ${products}">
                     <td th:text="${product.id}"></td>
-                    <td th:text="${product.name}" style="font-size: 20px;"></td>
+                    <td th:text="${product.name}" style="font-size: 19px;"></td>
                     <td th:text="${product.quantity}" style="text-align: right;"></td>
                     <td th:text="${product.safetyStock}" style="text-align: center;font-weight: bold;"></td>
                     <td th:text="${product.price}" style="text-align: right;"></td>
