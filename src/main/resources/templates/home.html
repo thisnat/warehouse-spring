@@ -5,7 +5,7 @@
 <div class="container mt-3" layout:fragment="content">
     <h1>📦 Welcome to warehouse!</h1>
     <span class="badge bg-primary" style="font-size: 15px;">7 รอการยืนยัน</span>
-    <span class="badge bg-danger" style="font-size: 15px;">ขาด stock 17 รายการ</span>
+    <span id="safeNoti" class="badge bg-danger" style="font-size: 15px;">bruh</span>
     <span class="badge bg-success" style="font-size: 15px;">นำออกแล้ว 123 รายการ</span>
     <div class="mt-4">
         <p class="lead mb-4">📋 Product list (รายการสินค้าทั้งหมด)</p>
@@ -15,8 +15,8 @@
                     <th>id</th>
                     <th>ชื่อสินค้า</th>
                     <th style="text-align: right;">จำนวน (ชิ้น)</th>
-                    <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
                     <th style="text-align: center;">safety stock</th>
+                    <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
                     <th style="text-align: center;">รายละเอียด</th>
                 </tr>
             </thead>
@@ -25,8 +25,8 @@
                     <td th:text="${product.id}"></td>
                     <td th:text="${product.name}" style="font-size: 18px;"></td>
                     <td th:text="${product.quantity}" style="text-align: right;"></td>
-                    <td th:text="${product.price}" style="text-align: right;"></td>
                     <td th:text="${product.safetyStock}" style="text-align: center;font-weight: bold;"></td>
+                    <td th:text="${product.price}" style="text-align: right;"></td>
                     <td th:text="${product.note}"></td>
                 </tr>
             </tbody>

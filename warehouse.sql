@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2021 at 08:33 AM
+-- Generation Time: Feb 23, 2021 at 03:16 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -43,7 +43,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `name`, `quantity`, `price`, `safetyStock`, `note`, `productId`, `createDate`) VALUES
-(10, 'sonteen', 1, 123122000, 23, 'lnwza007luciferx', 11, '2021-02-23 14:07:30');
+(35, 'asdklklj', 1, 213, 78, 'lnwza555', 3, '2021-02-23 20:51:26');
 
 -- --------------------------------------------------------
 
@@ -57,7 +57,7 @@ CREATE TABLE `products` (
   `quantity` int(11) NOT NULL DEFAULT 1,
   `price` float NOT NULL DEFAULT 0,
   `safetyStock` int(11) NOT NULL DEFAULT 0,
-  `note` text DEFAULT NULL,
+  `note` text DEFAULT '-',
   `createDate` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -66,13 +66,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `quantity`, `price`, `safetyStock`, `note`, `createDate`) VALUES
-(4, 'catzero', 77753, 123.2, 7, 'qjfoiqemfoimimxpmcoppmsaccat', '2021-02-02 19:33:03'),
-(5, 'dummy', 788, 777, 2, 'dummy text', '2021-02-03 21:43:47'),
-(6, 'asdadsdas', 10, 43243, 11, 'ewfgikergnioreg', '2021-02-03 21:47:09'),
-(8, 'react', 123, 5325420, 223, 'weltjwrepotjwpotjpowretkpowtlorem', '2021-02-04 16:08:53'),
-(10, 'dummy222', 12, 777, 2, 'dummy text', '2021-02-21 00:59:49'),
-(11, 'sonteen', 123121997, 290183, 23, 'lnwza007luciferx', '2021-02-21 23:09:07'),
-(12, 'testqwrekln', 124, 425, 325, 'opkwpokopeskfpowkfwef', '2021-02-22 21:39:05');
+(3, 'asdklklj', 212, 213, 78, 'lnwza555', '2021-02-23 15:20:27'),
+(4, 'bbno$', 3245, 1337, 600, 'What if elon musk has this on his playlist', '2021-02-23 15:38:34'),
+(7, 'out of stock test', 23, 23, 566, 'alway out of stock lol', '2021-02-23 18:35:08'),
+(8, 'qwope', 2323, 125.25, 4442, 'lol out of stock', '2021-02-23 18:47:55'),
+(11, 'qeroiqeroij', 1, 1337, 1, 'wrwefwef', '2021-02-23 20:41:46');
 
 --
 -- Indexes for dumped tables
@@ -98,13 +96,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

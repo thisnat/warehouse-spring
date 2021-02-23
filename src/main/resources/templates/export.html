@@ -3,7 +3,7 @@
     xmlns:th="https://www.thymeleaf.org">
 
 <div class="container mt-3" layout:fragment="content">
-    <h1>Product Export (นำออกสินค้า)</h1>
+    <h1 style="text-align: center;">Product Export (นำออกสินค้า)</h1>
     <div class="mt-4">
         <p class="lead mb-4">🛒 Export list (รายการนำออก)<button class="btn btn-primary" style="float: right;">นำออก</button></p>
         <table class="table table-bordered table-striped mb-4">
@@ -13,7 +13,7 @@
                     <th>ชื่อสินค้า</th>
                     <th style="text-align: right;">จำนวน (ชิ้น)</th>
                     <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
-                    <th>#</th>
+                    <th style="text-align: center;">#</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
                     <td th:text="${product.name}" style="font-size: 20px;"></td>
                     <td th:text="${product.quantity}" style="text-align: right;"></td>
                     <td th:text="${product.price}" style="text-align: right;"></td>
-                    <td>
+                    <td style="text-align: center;">
                         <a class="btn btn-danger" th:href="@{/export/remove/{id}(id=${product.id})}">ลบรายการ</a>
                     </td>
                 </tr>
@@ -36,9 +36,9 @@
                     <th>id</th>
                     <th>ชื่อสินค้า</th>
                     <th style="text-align: right;">จำนวน (ชิ้น)</th>
-                    <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
                     <th style="text-align: center;">safety stock</th>
-                    <th>#</th>
+                    <th style="text-align: right;">ราคา (บาท/ชิ้น)</th>
+                    <th style="text-align: center;">#</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,9 +46,9 @@
                     <td th:text="${product.id}"></td>
                     <td th:text="${product.name}" style="font-size: 20px;"></td>
                     <td th:text="${product.quantity}" style="text-align: right;"></td>
-                    <td th:text="${product.price}" style="text-align: right;"></td>
                     <td th:text="${product.safetyStock}" style="text-align: center;font-weight: bold;"></td>
-                    <td>
+                    <td th:text="${product.price}" style="text-align: right;"></td>
+                    <td style="text-align: center;">
                         <a class="btn btn-success" th:href="@{/export/get/{id}(id=${product.id})}">เพิ่มรายการ</a>
                     </td>
                 </tr>
