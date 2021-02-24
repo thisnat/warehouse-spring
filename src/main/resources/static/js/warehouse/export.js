@@ -30,13 +30,14 @@ $(document).ready(function () {
         $('#myModal').modal('show');
     });
 
-    //export button
+    //export button (modal)
     $('#exportBtn').on('click', function (e) {
         e.preventDefault();
         let sq = $('#sQuantity').val(); //input quantity
 
         if (pProduct.quantity >= sq && sq != "" && sq != 0) {
             let data = { "quantity": pProduct.quantity - sq }
+            
             $.ajax({
                 type: 'PUT',
                 url: 'http://localhost:3001/api/products/' + pProduct.id,

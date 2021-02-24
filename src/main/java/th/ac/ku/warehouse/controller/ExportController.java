@@ -49,22 +49,13 @@ public class ExportController {
                     productCart.getProductId(),productCart.getSafetyStock(),productCart.getQuantity(),productCart.getPrice());
             productService.addProduct(reProduct);
             productService.removeCartItem(id);
+
+            //nonsense lol
             return new Product(null,null,null,0,0,0,0).toString();
         }
         productService.removeCartItem(id);
+
         return productCart.toString();
-    }
-
-    //not use
-    @PostMapping("/update/{id}")
-    public String exportProduct(@ModelAttribute Product product,
-                                @PathVariable int id,
-                                @RequestParam("quantity") int quantity,
-                                Model model) {
-        product.setQuantity(quantity);
-        productService.updateProduct(product);
-
-        return "redirect:export";
     }
 
     @RequestMapping("/get/{id}")

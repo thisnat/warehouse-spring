@@ -1,6 +1,25 @@
 $(document).ready(function () {
+    let errType = "";
+
     function isEmpty(str) {
         return str.replace(/^\s+|\s+$/g, '').length == 0;
+    }
+
+    const isBelowZero = () => {
+        let zero = false;
+        if($('#inputQuantity').val() <= 0){
+            errType = "จำนวนต้องมากกว่า 0";
+            zero = true;
+        }
+        if($('#inputSafetyStock').val() <= 0){
+            errType = "Safety Stockต้องมากกว่า 0";
+            zero = true;
+        }
+        if($('#inputPrice').val() <= 0){
+            errType = "ราคาต้องมากกว่า 0";
+            zero = true;
+        }
+        return zero;
     }
 
     $('#submitBtn').on('click', function (e) {
@@ -9,6 +28,10 @@ $(document).ready(function () {
         if ($('#inputName').val() == "" || isEmpty($('#inputName').val())) {
             $('#errA').remove();
             $('#btn-container').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">กรุณาใส่ชื่อสินค้า</div>`);
+        }
+        else if (isBelowZero()){
+            $('#errA').remove();
+            $('#btn-container').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">${errType}</div>`);
         }
         else {
             let product = {
@@ -21,9 +44,9 @@ $(document).ready(function () {
                 url: 'http://localhost:3001/api/products/add/',
                 contentType: 'application/json',
                 data: JSON.stringify(product)
-            })
-
-            window.location.href = 'http://localhost:8080/home/';
+            }).done((res) =>{
+                window.location.href = 'http://localhost:8080/home/';
+            });         
         }
     })
 });
