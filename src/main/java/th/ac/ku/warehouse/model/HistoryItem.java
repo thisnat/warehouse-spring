@@ -6,14 +6,15 @@ import org.springframework.lang.Nullable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HistoryItem {
     @Nullable
-    private int id,historyId,quantity;
+    private int id,historyId,quantity,productId;
     private String name;
     private double price;
 
-    public HistoryItem(int id, int historyId, int quantity, String name, double price) {
+    public HistoryItem(int id, int historyId, int quantity, int productId, String name, double price) {
         this.id = id;
         this.historyId = historyId;
         this.quantity = quantity;
+        this.productId = productId;
         this.name = name;
         this.price = price;
     }
@@ -30,22 +31,15 @@ public class HistoryItem {
         return quantity;
     }
 
+    public int getProductId() {
+        return productId;
+    }
+
     public String getName() {
         return name;
     }
 
     public double getPrice() {
         return price;
-    }
-
-    @Override
-    public String toString() {
-        return "HistoryItem{" +
-                "id=" + id +
-                ", historyId=" + historyId +
-                ", quantity=" + quantity +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
     }
 }

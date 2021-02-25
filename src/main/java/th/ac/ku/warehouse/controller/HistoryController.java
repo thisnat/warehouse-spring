@@ -25,7 +25,12 @@ public class HistoryController {
 
     @GetMapping("/{id}")
     public String getHistoryItemPage(@PathVariable int id,Model model) {
-        model.addAttribute("history", historyService.getHistoryById(id).get(0));
+        try{
+            model.addAttribute("history", historyService.getHistoryById(id).get(0));
+            model.addAttribute("historyItem", historyService.getHistoryItem(id));
+        }catch (Exception e){
+            return "error";
+        }
 
         return "historyitem";
     }

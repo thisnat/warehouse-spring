@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import th.ac.ku.warehouse.model.History;
+import th.ac.ku.warehouse.model.HistoryItem;
 import th.ac.ku.warehouse.model.Product;
 
 import java.util.Arrays;
@@ -35,6 +36,16 @@ public class HistoryService {
                 restTemplate.getForEntity(url, History[].class);
 
         History[] histories = response.getBody();
+        return Arrays.asList(histories);
+    }
+
+    public List<HistoryItem> getHistoryItem(int id) {
+        String url = "http://localhost:3001/api/history/getitem/"+id;
+
+        ResponseEntity<HistoryItem[]> response =
+                restTemplate.getForEntity(url, HistoryItem[].class);
+
+        HistoryItem[] histories = response.getBody();
         return Arrays.asList(histories);
     }
 

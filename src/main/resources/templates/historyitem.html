@@ -3,11 +3,56 @@
     xmlns:th="https://www.thymeleaf.org">
 
 <div class="container mt-4" layout:fragment="content">
-    <h1><span id="typeBadge" class="badge bg-success" th:text="${history.type}"></span></h1>
-    <p id="historyTime" th:text="${history.createDate}" style="font-size: 20px" class="mt-3"></p>
-    <div class="mt-4">
-        <h1>preview</h1>
+    <div class="preview">
+        <h1><span id="typeBadge" class="badge bg-success" th:text="${history.type}"></span></h1>
+        <p id="previewID" class="lead" th:inline="text">History #[[${history.id}]]</p>
     </div>
+    <p id="historyTime" th:text="${history.createDate}" style="font-size: 20px;" class="mt-3"></p>
+    <div>
+        <p class="lead mb-3">📋 รายการสินค้าในรายการนี้</p>
+        <table class="table table-bordered table-striped mb-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>id</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>จำนวน</th>
+                    <th>ราคา(ต่อชิ้น)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="historyItem : ${historyItem}">
+                    <td th:text="${historyItem.productId}"></td>
+                    <td th:text="${historyItem.name}"></td>
+                    <td th:text="${historyItem.quantity}"></td>
+                    <td th:text="${historyItem.price}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <style>
+        .preview {
+            padding-bottom: 10px;
+            overflow: hidden;
+        }
+
+        #previewID {
+            margin-left: 180px; margin-top: 5px; font-size: 32px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+            float: left;
+        }
+
+        h1 span {
+            color: #fff;
+            background-color: #446688;
+            padding: 1px 5px 3px 5px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+    </style>
     <script th:src="@{/js/moment.js}"></script>
     <script>
         $(document).ready(function () {
@@ -20,6 +65,7 @@
             }
 
             $('#historyTime').text(dateConvert($('#historyTime').text()));
+            $('#idDisplay').text("  za");
         })
     </script>
 </div>
