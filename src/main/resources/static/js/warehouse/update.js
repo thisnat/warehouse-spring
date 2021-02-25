@@ -36,6 +36,7 @@ $(document).ready(function () {
         
         if (sq != "" && sq != 0){
             let data = { "quantity": sq };
+            let history = { "type": "IMPORT" }
             
             $.ajax({
                 type: 'POST',
@@ -43,7 +44,23 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(data)
             }).done((res) => {
-                window.location.href = 'http://localhost:8080/update/';
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3001/api/history/add/',
+                    contentType: 'application/json',
+                    data: JSON.stringify(history)
+                }).done((res) =>{
+                    let item = {"historyId":res,"productId":pProduct.id,"name":pProduct.name,"price":pProduct.price,"quantity":sq}
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:3001/api/history/add/item',
+                        contentType: 'application/json',
+                        data: JSON.stringify(item)
+                    }).done((res) =>{
+                        window.location.href = 'http://localhost:8080/update/';
+                    })
+                })
             });
         }
         else{

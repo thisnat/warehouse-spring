@@ -7,9 +7,9 @@
         <h1><span id="typeBadge" class="badge bg-success" th:text="${history.type}"></span></h1>
         <p id="previewID" class="lead" th:inline="text">History #[[${history.id}]]</p>
     </div>
-    <p id="historyTime" th:text="${history.createDate}" style="font-size: 20px;" class="mt-3"></p>
+    <p id="historyTime" th:text="${history.createDate}" style="font-size: 20px;"></p>
     <div>
-        <p class="lead mb-3">📋 รายการสินค้าในรายการนี้</p>
+        <p class="lead mt-5 mb-3">📋 รายการสินค้าในรายการนี้</p>
         <table class="table table-bordered table-striped mb-4">
             <thead class="table-dark">
                 <tr>
