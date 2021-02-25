@@ -29,11 +29,13 @@ public class HistoryService {
     }
 
 
-    public History getHistoryById (int id) {
+    public List<History> getHistoryById (int id) {
         String url = "http://localhost:3001/api/history/"+id;
-        ResponseEntity<History > response = restTemplate.getForEntity(url, History .class);
+        ResponseEntity<History[]> response =
+                restTemplate.getForEntity(url, History[].class);
 
-        return response.getBody();
+        History[] histories = response.getBody();
+        return Arrays.asList(histories);
     }
 
 }
