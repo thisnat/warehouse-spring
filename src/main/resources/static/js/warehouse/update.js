@@ -36,7 +36,7 @@ $(document).ready(function () {
         
         if (sq != "" && sq != 0){
             let data = { "quantity": sq };
-            let history = { "type": "IMPORT" }
+            let history = { "type": "IMPORT","status":"ACCEPT" }
             
             $.ajax({
                 type: 'POST',

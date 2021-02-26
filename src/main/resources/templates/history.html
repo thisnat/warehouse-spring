@@ -13,11 +13,11 @@
             style="border: 1px solid rgb(222, 222, 222);">
             <thead style="background-color: #aec6cf;">
                 <tr>
-                    <th style="text-align: center;">id</th>
-                    <th style="text-align: center;">ประเภท</th>
-                    <th style="text-align: center;">วันที่</th>
-                    <th style="text-align: center;">เวลา</th>
-                    <th style="text-align: center;">#</th>
+                    <th>id</th>
+                    <th>ประเภท</th>
+                    <th>วันที่</th>
+                    <th>สถานะ</th>
+                    <th>#</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                     <td th:text="${history.id}" style="text-align: center; font-size: 18px;"></td>
                     <td th:text="${history.type}" style="text-align: center; font-size: 20px;"></td>
                     <td th:text="${history.createDate}" style="text-align: center; font-size: 18px;"></td>
-                    <td style="text-align: center; font-style: italic;"></td>
+                    <td th:text="${history.status}" style="text-align: center; font-style: italic;"></td>
                     <td style="text-align: center;">
                         <a class="btn btn-primary" th:href="@{/history/{id}(id=${history.id})}">ดูข้อมูล</a>
                     </td>
@@ -33,6 +33,11 @@
             </tbody>
         </table>
     </div>
+    <style>
+        .th {
+            text-align: center;
+        }
+    </style>
     <script th:src="@{/js/moment.js}"></script>
     <script th:src="@{/js/warehouse/history.js}"></script>
 </div>

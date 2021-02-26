@@ -7,13 +7,14 @@ import org.springframework.lang.Nullable;
 public class History {
     private int id;
     @Nullable
-    private String type,note,createDate;
+    private String type,note,createDate,status;
 
-    public History(int id, @Nullable String type, @Nullable String note, @Nullable String createDate) {
+    public History(int id, @Nullable String type, @Nullable String note, @Nullable String createDate, @Nullable String status) {
         this.id = id;
         this.type = type;
         this.note = note;
         this.createDate = createDate;
+        this.status = status;
     }
 
     public int getId() {
@@ -32,6 +33,10 @@ public class History {
         return createDate;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     @Override
     public String toString() {
         return "History{" +
@@ -39,6 +44,7 @@ public class History {
                 ", type='" + type + '\'' +
                 ", note='" + note + '\'' +
                 ", createDate='" + createDate + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

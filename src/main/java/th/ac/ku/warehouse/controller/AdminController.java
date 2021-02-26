@@ -12,4 +12,9 @@ public class AdminController {
     public String getAdminPage() {
         return "admin";
     }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
 }

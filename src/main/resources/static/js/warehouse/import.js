@@ -39,7 +39,7 @@ $(document).ready(function () {
                 "safetyStock": $('#inputSafetyStock').val(), "note": $('#inputNote').val()
             }
 
-            let history = { "type": "IMPORT" }
+            let history = { "type": "IMPORT","status":"ACCEPT" }
             let insertId;
 
             $.ajax({

@@ -23,8 +23,16 @@ $(document).ready(function () {
                 eCount++;
             }
 
+            if (data[3] == "ACCEPT"){
+                $(row).find('td:eq(3)')
+                .css('color', 'green')
+            }
+            else if (data[3] == "REJECT"){
+                $(row).find('td:eq(3)')
+                .css('color', 'red')
+            }
+
             $(row).find('td:eq(2)').text(dateConvert(data[2]));
-            $(row).find('td:eq(3)').text(moment(data[2]).fromNow());
 
         }
     });

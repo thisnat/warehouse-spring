@@ -8,8 +8,9 @@
         <p id="previewID" class="lead" th:inline="text">History #[[${history.id}]]</p>
     </div>
     <p id="historyTime" th:text="${history.createDate}" style="font-size: 20px;"></p>
+    <span id="historyStatus" th:text="${history.status}" style="font-size: 15px;"></span>
     <div>
-        <p class="lead mt-5 mb-3">📋 รายการสินค้าในรายการนี้</p>
+        <p class="lead mt-4 mb-3">📋 รายการสินค้าในรายการนี้</p>
         <table class="table table-bordered table-striped mb-4">
             <thead class="table-dark">
                 <tr>
@@ -64,8 +65,17 @@
                 $('#typeBadge').attr('class', 'badge bg-danger');
             }
 
+            if ($('#historyStatus').text() == 'ACCEPT') {
+                $('#historyStatus').attr('class','badge rounded-pill bg-success');
+            }
+            else if ($('#historyStatus').text() == 'PENDING'){
+                $('#historyStatus').attr('class','badge rounded-pill bg-warning text-dark');
+            }
+            else{
+                $('#historyStatus').attr('class','badge rounded-pill bg-danger');
+            }
+
             $('#historyTime').text(dateConvert($('#historyTime').text()));
-            $('#idDisplay').text("  za");
         })
     </script>
 </div>
