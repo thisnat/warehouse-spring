@@ -30,6 +30,9 @@ $(document).ready(function () {
             else if (data[3] == "REJECT"){
                 $(row).find('td:eq(3)')
                 .css('color', 'red')
+            }else{
+                $(row).find('td:eq(3)')
+                .css('color', '#ffc107')
             }
 
             $(row).find('td:eq(2)').text(dateConvert(data[2]));

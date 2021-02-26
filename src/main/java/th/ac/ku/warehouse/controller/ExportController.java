@@ -3,8 +3,10 @@ package th.ac.ku.warehouse.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import th.ac.ku.warehouse.model.History;
 import th.ac.ku.warehouse.model.Product;
 import th.ac.ku.warehouse.model.ProductCart;
+import th.ac.ku.warehouse.service.HistoryService;
 import th.ac.ku.warehouse.service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +17,13 @@ import java.util.List;
 @RequestMapping("/export")
 public class ExportController {
     private ProductService productService;
+    private HistoryService historyService;
     private List<Product> productList;
     private List<ProductCart> cartList;
 
-    public ExportController(ProductService productService, List<Product> productList, List<ProductCart> cartList) {
+    public ExportController(ProductService productService, HistoryService historyService, List<Product> productList, List<ProductCart> cartList) {
         this.productService = productService;
+        this.historyService = historyService;
         this.productList = productList;
         this.cartList = cartList;
     }

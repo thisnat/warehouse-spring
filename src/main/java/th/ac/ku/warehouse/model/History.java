@@ -5,16 +5,18 @@ import org.springframework.lang.Nullable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class History {
-    private int id;
     @Nullable
-    private String type,note,createDate,status;
+    private int id;
+    private String type,note,status;
+    @Nullable
+    private String createDate;
 
-    public History(int id, @Nullable String type, @Nullable String note, @Nullable String createDate, @Nullable String status) {
+    public History(int id, String type, String note, String status, String createDate) {
         this.id = id;
         this.type = type;
         this.note = note;
-        this.createDate = createDate;
         this.status = status;
+        this.createDate = createDate;
     }
 
     public int getId() {

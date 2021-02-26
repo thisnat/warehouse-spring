@@ -3,11 +3,11 @@ $(document).ready(function () {
 
     //table
     $('#productList').DataTable({
-        rowCallback: function(row,data,index){
-            if (parseInt(data[2]) < parseInt(data[3])){
+        rowCallback: function (row, data, index) {
+            if (parseInt(data[2]) < parseInt(data[3])) {
                 $(row).find('td:eq(2)')
-                .css('color', 'red')
-                .css('font-weight','bold');
+                    .css('color', 'red')
+                    .css('font-weight', 'bold');
             }
             $(row).find('td:eq(2)').text(parseInt(data[2]).toLocaleString());
             $(row).find('td:eq(4)').text(parseFloat(data[4]).toLocaleString());
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
         if (pProduct.quantity >= sq && sq != "" && sq != 0) {
             let data = { "quantity": pProduct.quantity - sq }
-            
+
             $.ajax({
                 type: 'PUT',
                 url: 'http://localhost:3001/api/products/' + pProduct.id,
@@ -70,6 +70,27 @@ $(document).ready(function () {
             $('#errA').remove();
             $('#modalBody').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">กรุณาใส่จำนวนให้ถูกต้อง</div>`);
         }
+    });
+
+    $('#exportAllBtn').on('click', function (e) {
+        e.preventDefault();
+
+        $.get('http://localhost:3001/api/cart/', function (cart) {
+            if (cart[0] === undefined) {
+                alert("รายการสินค้าว่าง");
+            }
+            else {
+                let history = { "type": "EXPORT", "status": "PENDING", "note": "none" }
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3001/api/products/exportall/',
+                    contentType: 'application/json',
+                    data: JSON.stringify(history)
+                }).done((res) => {
+                    window.location.href = 'http://localhost:8080/history/';
+                });
+            }
+        });
     });
 
     //remove btn
