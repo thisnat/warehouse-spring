@@ -49,4 +49,15 @@ public class HistoryService {
         return Arrays.asList(histories);
     }
 
+    public List<History> getPendingHistory() {
+        String url = "http://localhost:3001/api/history/pending";
+
+        ResponseEntity<History[]> response =
+                restTemplate.getForEntity(url, History[].class);
+
+        History[] histories = response.getBody();
+        return Arrays.asList(histories);
+    }
+
+
 }
