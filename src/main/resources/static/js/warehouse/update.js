@@ -38,30 +38,7 @@ $(document).ready(function () {
             let data = { "quantity": sq };
             let history = { "type": "IMPORT","status":"ACCEPT" }
             
-            $.ajax({
-                type: 'POST',
-                url: 'http://localhost:8080/update/create/'+pProduct.id,
-                contentType: 'application/json',
-                data: JSON.stringify(data)
-            }).done((res) => {
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/history/add/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(history)
-                }).done((res) =>{
-                    let item = {"historyId":res,"productId":pProduct.id,"name":pProduct.name,"price":pProduct.price,"quantity":sq}
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://localhost:3001/api/history/add/item',
-                        contentType: 'application/json',
-                        data: JSON.stringify(item)
-                    }).done((res) =>{
-                        window.location.href = 'http://localhost:8080/update/';
-                    })
-                })
-            });
+            //post to backend
         }
         else{
             $('#errA').remove();

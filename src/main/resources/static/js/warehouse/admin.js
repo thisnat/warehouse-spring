@@ -1,12 +1,12 @@
 $(document).ready(function () {
     let session = localStorage.getItem("session")
-    
-    if(session === null){
+
+    if (session === null) {
         window.location.href = 'http://localhost:8080/admin/login';
-    }else{
-        $('#logoutBtn').on('click',function(e){
+    } else {
+        $('#logoutBtn').on('click', function (e) {
             e.preventDefault();
-            
+
             localStorage.removeItem('session');
             window.location.href = 'http://localhost:8080/home';
         })
@@ -17,13 +17,49 @@ $(document).ready(function () {
     }
 
     $('#historyList').DataTable({
-        rowCallback: function(row,data,index){
-            if (data[1] == "EXPORT"){
+        rowCallback: function (row, data, index) {
+            if (data[1] == "EXPORT") {
                 $(row).find('td:eq(1)')
-                .css('color', 'red')
-                .css('font-weight','bold');
+                    .css('color', 'red')
+                    .css('font-weight', 'bold');
+            } else {
+                $(row).find('td:eq(1)')
+                    .css('color', 'green')
+                    .css('font-weight', 'bold');
             }
             $(row).find('td:eq(2)').text(dateConvert(data[2]));
         }
+    });
+
+    //accpet button
+    $('.btn.btn-success').on('click', function (e) {
+        e.preventDefault();
+
+        let id = $(this).attr('href').split("/")[2];
+        data = { "status": "ACCEPT" }
+
+        $.get('http://localhost:3001/api/history/' + id, function (history) {
+            if (history[0].type == "IMPORT") {
+
+            }
+            else {
+                $.ajax({
+                    type: 'PUT',
+                    url: 'http://localhost:3001/api/history/update/' + id,
+                    contentType: 'application/json',
+                    data: JSON.stringify(data)
+                }).done(() => {
+                    window.location.href = 'http://localhost:8080/admin';
+                })
+            }
+        })
+
+    });
+
+    //reject button
+    $('.btn.btn-danger').on('click', function (e) {
+        e.preventDefault();
+
+        console.log("click");
     });
 })

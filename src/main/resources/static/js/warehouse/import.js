@@ -36,36 +36,17 @@ $(document).ready(function () {
         else {
             let product = {
                 "name": $('#inputName').val(), "quantity": $('#inputQuantity').val(), "price": $('#inputPrice').val(),
-                "safetyStock": $('#inputSafetyStock').val(), "note": $('#inputNote').val()
+                "safetyStock": $('#inputSafetyStock').val(), "note": $('#inputNote').val(),
+                "type": "IMPORT", "status": "PENDING"
             }
-
-            let history = { "type": "IMPORT","status":"ACCEPT" }
-            let insertId;
 
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:3001/api/products/add/',
+                url: 'http://localhost:3001/api/products/import/',
                 contentType: 'application/json',
                 data: JSON.stringify(product)
             }).done((res) => {
-                insertId = res;
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/history/add/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(history)
-                }).done((res) => {
-                    let item = {"historyId":res,"productId":insertId,"name":product.name,"price":product.price,"quantity":product.quantity}
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://localhost:3001/api/history/add/item',
-                        contentType: 'application/json',
-                        data: JSON.stringify(item)
-                    }).done((res) =>{
-                        window.location.href = 'http://localhost:8080/home/';
-                    })
-                })
+                window.location.href = 'http://localhost:8080/home/';
             });
         }
     })
