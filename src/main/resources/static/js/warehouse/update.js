@@ -35,10 +35,20 @@ $(document).ready(function () {
         let sq = $('#sQuantity').val(); //input quantity
         
         if (sq != "" && sq != 0){
-            let data = { "quantity": sq };
-            let history = { "type": "IMPORT","status":"ACCEPT" }
-            
-            //post to backend
+            let product = {
+                "name": pProduct.name, "quantity": sq, "price": pProduct.price,
+                "safetyStock": pProduct.safetyStock, "note": pProduct.note,"productId":pProduct.id,
+                "type": "IMPORT", "status": "PENDING"
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:3001/api/products/import/',
+                contentType: 'application/json',
+                data: JSON.stringify(product)
+            }).done((res) => {
+                window.location.href = 'http://localhost:8080/history/';
+            });
         }
         else{
             $('#errA').remove();

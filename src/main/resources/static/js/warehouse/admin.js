@@ -40,7 +40,7 @@ $(document).ready(function () {
 
         $.get('http://localhost:3001/api/history/' + id, function (history) {
             if (history[0].type == "IMPORT") {
-
+                //do accept import
             }
             else {
                 $.ajax({
@@ -60,6 +60,23 @@ $(document).ready(function () {
     $('.btn.btn-danger').on('click', function (e) {
         e.preventDefault();
 
-        console.log("click");
+        let id = $(this).attr('href').split("/")[2];
+        data = { "status": "REJECT" }
+
+        $.get('http://localhost:3001/api/history/' + id, function (history) {
+            if (history[0].type == "IMPORT") {
+                $.ajax({
+                    type: 'PUT',
+                    url: 'http://localhost:3001/api/history/update/' + id,
+                    contentType: 'application/json',
+                    data: JSON.stringify(data)
+                }).done(() => {
+                    window.location.href = 'http://localhost:8080/admin';
+                })
+            }
+            else {
+                //do reject export
+            }
+        })
     });
 })

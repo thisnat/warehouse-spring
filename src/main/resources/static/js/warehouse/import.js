@@ -46,7 +46,7 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(product)
             }).done((res) => {
-                window.location.href = 'http://localhost:8080/home/';
+                window.location.href = 'http://localhost:8080/history/';
             });
         }
     })
