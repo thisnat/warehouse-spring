@@ -41,6 +41,14 @@ $(document).ready(function () {
         $.get('http://localhost:3001/api/history/' + id, function (history) {
             if (history[0].type == "IMPORT") {
                 //do accept import
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:3001/api/products/import/accept/' + id,
+                    contentType: 'application/json',
+                    data: JSON.stringify(data)
+                }).done(() => {
+                    window.location.href = 'http://localhost:8080/admin';
+                })
             }
             else {
                 $.ajax({
