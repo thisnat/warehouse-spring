@@ -8,7 +8,7 @@ import th.ac.ku.warehouse.model.Product;
 import th.ac.ku.warehouse.service.ProductService;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomeController {
     private ProductService productService;
 
@@ -17,6 +17,11 @@ public class HomeController {
     }
 
     @GetMapping
+    public String getLandingPage(Model model) {
+        return "test";
+    }
+
+    @GetMapping("/home")
     public String getHomePage(Model model) {
         model.addAttribute("products", productService.getProducts());
         return "home";
