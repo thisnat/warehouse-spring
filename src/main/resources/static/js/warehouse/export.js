@@ -1,5 +1,6 @@
 $(document).ready(function () {
     let pProduct = null; //select product
+    let session = localStorage.getItem("session")
 
     //table
     $('#productList').DataTable({
@@ -80,7 +81,13 @@ $(document).ready(function () {
                 alert("รายการสินค้าว่าง");
             }
             else {
-                let history = { "type": "EXPORT", "status": "PENDING", "note": "none" }
+                let history;
+                
+                if (session === null) {
+                    history = { "type": "EXPORT", "status": "PENDING", "note": "none" }
+                } else {
+                    history = { "type": "EXPORT", "status": "ACCEPT", "note": "none" }
+                }
                 $.ajax({
                     type: 'POST',
                     url: 'http://localhost:3001/api/products/exportall/',
