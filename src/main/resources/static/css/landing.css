@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200&display=swap');
+
+*{
+    font-family: 'Mitr', sans-serif;
+}
+
+header {
+    background: url('../image/1605446657939.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    height: 400px;
+}
+
+.iconnavbar{
+    background-image: url("../image/1605446657939.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 90px;
+    width: 350px;
+    /* margin-right: 10px; */
+}
+
+.icons{
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.icons-icon{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: brown;
+
+}
+
+.showcase-img {
+    background-size: cover;
+    min-height: 30rem;
+}
+
+.showcase-text {
+    padding: 8rem;
+}
+
+/* .Profile {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+.Profile .Profile-item img {
+    max-width: 12rem;
+    box-shadow: 0 5px 5px #adb5bd;
+} */
+
+footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+

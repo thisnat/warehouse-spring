@@ -18,7 +18,7 @@ public class HomeController {
 
     @GetMapping
     public String getLandingPage(Model model) {
-        return "test";
+        return "landing";
     }
 
     @GetMapping("/home")
