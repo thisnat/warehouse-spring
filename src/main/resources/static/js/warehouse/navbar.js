@@ -3,10 +3,10 @@ $(document).ready(function () {
     let count = 0;
 
     if (session === null) {
-        $('#loginStatus').text('Guest');
+        $('#loginStatus').text('💁 Guest');
     } else {
         let user = JSON.parse(localStorage.getItem('session'))
-        $('#loginStatus').text(`${user.username}`)
+        $('#loginStatus').text(`😎 ${user.username}`)
         $('#loginStatus').attr('style', 'font-weight: bold;')
     }
 
