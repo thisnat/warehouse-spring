@@ -41,9 +41,7 @@
         </div>
     </div>
   </nav>
-  <div id="typed-strings">
-    <p>What is <strong>warehouse</strong> project ?</p>
-  </div>
+  
   <div id="typed" class="text-center fs-1 text-dark"></div>
   <div class="container text-center fs-5">Warehousing is when you purchase goods from a manufacturer and store them
     before they are shipped to another location for fulfillment. You may store these goods in a warehouse, spare room,
@@ -152,8 +150,23 @@
     crossorigin="anonymous"></script>
   <script>
     let typed = new Typed('#typed', {
-      stringsElement: '#typed-strings',
+      strings: ['<p>What is <strong>warehouse</strong> project ?</p>'],
       typeSpeed: 40,
+    });
+
+    $.get('http://localhost:3001/api/products/count', function (item) {
+      count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
+      $('#allProduct').text(count);
+    });
+
+    $.get('http://localhost:3001/api/history/pending/count', function (item) {
+      count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
+      $('#allRequest').text(count);
+    });
+
+    $.get('http://localhost:3001/api/history/count', function (item) {
+      count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
+      $('#allHistory').text(count);
     });
   </script>
 
