@@ -16,14 +16,11 @@
     crossorigin="anonymous" />
   <link th:rel="stylesheet" th:href="@{/css/landing.css}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
-    integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
-    crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">📦 warehouse</a>
 
@@ -41,12 +38,15 @@
         </div>
     </div>
   </nav>
-  
-  <div id="typed" class="text-center fs-1 text-dark"></div>
-  <div class="container text-center fs-5">Warehousing is when you purchase goods from a manufacturer and store them
-    before they are shipped to another location for fulfillment. You may store these goods in a warehouse, spare room,
-    or other facilities. This all depends on how much stock you have, and how big your business is. If you’ve a small
-    business your warehousing option doesn’t need to include transport access.</div>
+
+  <div>
+    <div class="jumbotron text-white jumbotron-image" style="background-image: url('https://i.imgur.com/Xbjrbwb.jpg');">
+    <div class="text-center fs-1 text-light">👋 Welcome to <strong>warehouse</strong> project !</div>
+    <div class="container text-center fs-5">Warehousing is when you purchase goods from a manufacturer and store them
+      before they are shipped to another location for fulfillment. You may store these goods in a warehouse, spare room,
+      or other facilities. This all depends on how much stock you have, and how big your business is. If you’ve a small
+      business your warehousing option doesn’t need to include transport access.</div>
+  </div>
 
   <!-- Features icons -->
   <section class="icons bg-black text-center">
@@ -58,12 +58,10 @@
             <div class="card">
               <div class="card-body">
                 <div class="icons-icon text-dark">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor" class="bi bi-check2-square"
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor" class="bi bi-box"
                     viewBox="0 0 16 16">
                     <path
-                      d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                    <path
-                      d="M8.354 10.354l7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
+                      d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
                   </svg>
                   <p><strong id="allProduct">99</strong> รายการ</p>
                 </div>
@@ -98,10 +96,12 @@
             <div class="card">
               <div class="card-body">
                 <div class="icons-icon text-dark">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor" class="bi bi-box"
+                  <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="currentColor" class="bi bi-check2-square"
                     viewBox="0 0 16 16">
                     <path
-                      d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                      d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
+                    <path
+                      d="M8.354 10.354l7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
                   </svg>
                   <p><strong id="allHistory">99</strong> รายการ</p>
                 </div>
@@ -114,15 +114,14 @@
       </div>
     </div>
   </section>
-
-
+  </div>
 
   <!-- Image Showcase -->
   <section class="showcase" id="about">
     <div class="container-fluid p-0">
       <div class="row g-0">
         <div class="my-auto showcase-text" style="padding: 2rem 5rem 3rem 5rem;">
-          <div class="text-center fs-1 text-dark">About <strong>warehouse</strong> project</div>
+          <div class="text-center fs-1 text-dark">📄 About <strong>warehouse</strong> project</div>
           <div class="mt-5">
             <p class="lead">warehouse project เป็นโปรเจคของวิชา 01418471 Introduction to Software Engineering</p>
             <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim quidem quis blanditiis
@@ -139,7 +138,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <p class="text-muted"><strong>warehouse project</strong> @ 01418471 Introduction to Software Engineering</p>
+          <p class="text-muted"><strong>warehouse project</strong> @ 01418471 Introduction to Software Engineering ✨</p>
         </div>
       </div>
     </div>
@@ -149,11 +148,6 @@
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
   <script>
-    let typed = new Typed('#typed', {
-      strings: ['<p>Welcome to <strong>warehouse</strong> project !</p>'],
-      typeSpeed: 40,
-    });
-
     $.get('http://localhost:3001/api/products/count', function (item) {
       count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
       $('#allProduct').text(count);
@@ -169,6 +163,15 @@
       $('#allHistory').text(count);
     });
   </script>
+
+  <style>
+    .jumbotron-image {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 90px 50px;
+    }
+  </style>
 
 </body>
 
