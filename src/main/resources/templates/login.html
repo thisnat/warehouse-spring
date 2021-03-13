@@ -3,15 +3,15 @@
   xmlns:th="https://www.thymeleaf.org">
 
 <div class="container" layout:fragment="content" style="margin-top: 125px;">
-  <div>
-    <h1 class="display-4" style="text-align: center;">Admin login</h1>
+  <div class="login-container">
+    <h1 class="display-4" style="text-align: center;">🖥️ Admin login</h1>
     <form id="form-container" class="mt-3">
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <label for="exampleInputEmail1" class="form-label">Username :</label>
         <input type="email" class="form-control" id="exampleInputEmail1">
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="exampleInputPassword1" class="form-label">Password :</label>
         <input type="password" class="form-control" id="exampleInputPassword1">
       </div>
       <button id="loginBtn" class="btn btn-primary">เข้าสู่ระบบ</button>
@@ -40,6 +40,16 @@
       })
     })
   </script>
+  <style>
+    .login-container{
+      padding: 75px 100px;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-container button{
+      padding: 15px 25px;
+    }
+  </style>
 </div>
 
 </html>

@@ -35,7 +35,7 @@ $(document).ready(function () {
         e.preventDefault();
         let sq = $('#sQuantity').val(); //input quantity
 
-        if (sq != "" && sq != 0) {
+        if (sq != "" && sq > 0) {
             let product;
 
             if (session === null) {

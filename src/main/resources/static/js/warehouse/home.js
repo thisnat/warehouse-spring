@@ -23,4 +23,9 @@ $(document).ready(function () {
         pCount = JSON.stringify(item[0]).split(":")[1].replace("}","")
         $('#pNoti').text(`รอการยืนยัน ${pCount} รายการ`);
     });
+
+    $.get('http://localhost:3001/api/history/count', function (item) {
+        pCount = JSON.stringify(item[0]).split(":")[1].replace("}","")
+        $('#historyNoti').text(`รายการทั้งหมด ${pCount} รายการ`);
+    });
 });

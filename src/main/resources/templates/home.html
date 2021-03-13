@@ -2,11 +2,11 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}"
     xmlns:th="https://www.thymeleaf.org">
 
-<div class="container mt-3" layout:fragment="content">
+<div class="container my-3" layout:fragment="content">
     <h1 class="display-4">👋 Welcome to warehouse!</h1>
     <span id="pNoti" class="badge bg-primary" style="font-size: 15px;">yay</span>
     <span id="safeNoti" class="badge bg-danger" style="font-size: 15px;">yay</span>
-    <span class="badge bg-success" style="font-size: 15px;">นำออกแล้ว 99 รายการ</span>
+    <span id="historyNoti" class="badge bg-success" style="font-size: 15px;">yay</span>
     <div class="mt-4">
         <p class="lead mb-4">📋 Product list (รายการสินค้าทั้งหมด)</p>
         <table id="productList" class="table table-striped table-bordered table-hover" style="border: 1px solid rgb(222, 222, 222);">
