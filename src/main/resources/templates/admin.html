@@ -5,7 +5,7 @@
 <div class="container my-3" layout:fragment="content">
     <h1>🖥️ จัดการคำขอการนำออก/นำออกสินค้า</h1>
     <div>
-        <button id="logoutBtn" class="btn btn-danger" style="float: right;">Log out</button>
+        <button id="logoutBtn" class="btn btn-danger" style="float: right;"><i class="fas fa-sign-out-alt"></i> Log out</button>
     </div>
     <div style="margin-top: 75px;">
         <table id="historyList" class="table table-striped table-bordered table-hover">
@@ -27,13 +27,21 @@
                         <a class="btn btn-primary" th:href="@{/history/{id}(id=${historyItem.id})}">ข้อมูล</a>
                     </td>
                     <td>
-                        <a class="btn btn-success" th:href="@{/history/{id}(id=${historyItem.id})}">ACCEPT</a>
-                        <a class="btn btn-danger" th:href="@{/history/{id}(id=${historyItem.id})}">REJECT</a>
+                        <a class="btn btn-success" th:href="@{/history/{id}(id=${historyItem.id})}"><i class="fas fa-check"></i> ACCEPT</a>
+                        <a class="btn btn-danger" th:href="@{/history/{id}(id=${historyItem.id})}"><i class="fas fa-times"></i> REJECT</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <style>
+        th {
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
     <script th:src="@{/js/moment.js}"></script>
     <script th:src="@{/js/warehouse/admin.js}"></script>
 </div>

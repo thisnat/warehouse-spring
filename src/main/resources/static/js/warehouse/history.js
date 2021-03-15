@@ -30,16 +30,16 @@ $(document).ready(function () {
                     .css('color', '#ffc107')
             }
             $(row).find('td:eq(2)').text(dateConvert(data[2]));
-        },order: [[ 0, "desc" ]]
+        }, order: [[0, "desc"]]
     });
 
     $.get('http://localhost:3001/api/history/count/import', function (item) {
-        count = JSON.stringify(item[0]).split(":")[1].replace("}","")
+        count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
         $('#ib').text(`นำเข้า ${count} รายการ`);
     });
 
     $.get('http://localhost:3001/api/history/count/export', function (item) {
-        count = JSON.stringify(item[0]).split(":")[1].replace("}","")
+        count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
         $('#eb').text(`นำออก ${count} รายการ`);
     });
 })

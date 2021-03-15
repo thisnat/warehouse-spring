@@ -12,23 +12,24 @@ $(document).ready(function () {
             $(row).find('td:eq(2)').text(parseInt(data[2]).toLocaleString());
             $(row).find('td:eq(4)').text(parseFloat(data[4]).toLocaleString());
             $(row).find('td:eq(3)').text(parseInt(data[3]).toLocaleString());
+
+            //update btn
+            $('.btn.btn-success').on('click', function (e) {
+                e.preventDefault();
+                let href = $(this).attr('href');
+                $.get(href, function (product) {
+                    pProduct = product;
+
+                    $('#productName').text(product.name);
+                    $('#productQuantity').text(`${product.quantity} ชิ้น`);
+                    $('#productSafe').text(`safety stock : ${product.safetyStock}`);
+                });
+                $('#sQuantity').val("1");
+                $('#errA').remove();
+
+                $('#myModal').modal('show');
+            });
         }
-    });
-
-    $('.btn.btn-success').on('click', function (e) {
-        e.preventDefault();
-        let href = $(this).attr('href');
-        $.get(href, function (product) {
-            pProduct = product;
-
-            $('#productName').text(product.name);
-            $('#productQuantity').text(`${product.quantity} ชิ้น`);
-            $('#productSafe').text(`safety stock : ${product.safetyStock}`);
-        });
-        $('#sQuantity').val("1");
-        $('#errA').remove();
-
-        $('#myModal').modal('show');
     });
 
     $('#updateBtn').on('click', function (e) {
