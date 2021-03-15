@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 
 
     <script th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
@@ -29,6 +30,11 @@
 <body style="padding-top: 50px;">
     <div th:replace="fragments/header :: header"></div>
     <div layout:fragment="content"></div>
+    <style>
+        * {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
 </body>
 
 </html>
