@@ -27,12 +27,15 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body style="padding-top: 50px;">
+<body style="padding-top: 60px;">
     <div th:replace="fragments/header :: header"></div>
     <div layout:fragment="content"></div>
     <style>
         * {
             font-family: 'Kanit', sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
         }
     </style>
 </body>

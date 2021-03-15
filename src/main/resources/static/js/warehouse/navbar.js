@@ -7,7 +7,7 @@ $(document).ready(function () {
     } else {
         let user = JSON.parse(localStorage.getItem('session'))
         $('#loginStatus').text(`${user.username}`)
-        $('#navUser').append('<button id="logoutNav" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i></button>');
+        $('#navUser').append('<button id="logoutNav" class="btn btn-danger" style="margin-left: 15px;"><i class="fas fa-sign-out-alt"></i> Log out</button>');
         $('#logoutNav').on('click', function (e) {
             e.preventDefault();
 
