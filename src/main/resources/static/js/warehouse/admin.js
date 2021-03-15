@@ -28,71 +28,72 @@ $(document).ready(function () {
                     .css('font-weight', 'bold');
             }
             $(row).find('td:eq(2)').text(dateConvert(data[2]));
+
+            //accpet button
+            $('.btn.btn-success').on('click', function (e) {
+                e.preventDefault();
+
+                let id = $(this).attr('href').split("/")[2];
+                data = { "status": "ACCEPT" }
+
+                $.get('http://localhost:3001/api/history/' + id, function (history) {
+                    if (history[0].type == "IMPORT") {
+                        //do accept import
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:3001/api/products/import/accept/' + id,
+                            contentType: 'application/json',
+                            data: JSON.stringify(data)
+                        }).done(() => {
+                            window.location.href = 'http://localhost:8080/admin';
+                        })
+                    }
+                    else {
+                        $.ajax({
+                            type: 'PUT',
+                            url: 'http://localhost:3001/api/history/update/' + id,
+                            contentType: 'application/json',
+                            data: JSON.stringify(data)
+                        }).done(() => {
+                            window.location.href = 'http://localhost:8080/admin';
+                        })
+                    }
+                })
+
+            });
+
+            //reject button
+            $('.btn.btn-danger').on('click', function (e) {
+                e.preventDefault();
+
+                let id = $(this).attr('href').split("/")[2];
+                data = { "status": "REJECT" }
+
+                $.get('http://localhost:3001/api/history/' + id, function (history) {
+                    if (history[0].type == "IMPORT") {
+                        $.ajax({
+                            type: 'PUT',
+                            url: 'http://localhost:3001/api/history/update/' + id,
+                            contentType: 'application/json',
+                            data: JSON.stringify(data)
+                        }).done(() => {
+                            window.location.href = 'http://localhost:8080/admin';
+                        })
+                    }
+                    else {
+                        //do reject export
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:3001/api/products/export/reject/' + id,
+                            contentType: 'application/json',
+                            data: JSON.stringify(data)
+                        }).done(() => {
+                            window.location.href = 'http://localhost:8080/admin';
+                        })
+                    }
+                })
+            });
         }
     });
 
-    //accpet button
-    $('.btn.btn-success').on('click', function (e) {
-        e.preventDefault();
-
-        let id = $(this).attr('href').split("/")[2];
-        data = { "status": "ACCEPT" }
-
-        $.get('http://localhost:3001/api/history/' + id, function (history) {
-            if (history[0].type == "IMPORT") {
-                //do accept import
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/import/accept/' + id,
-                    contentType: 'application/json',
-                    data: JSON.stringify(data)
-                }).done(() => {
-                    window.location.href = 'http://localhost:8080/admin';
-                })
-            }
-            else {
-                $.ajax({
-                    type: 'PUT',
-                    url: 'http://localhost:3001/api/history/update/' + id,
-                    contentType: 'application/json',
-                    data: JSON.stringify(data)
-                }).done(() => {
-                    window.location.href = 'http://localhost:8080/admin';
-                })
-            }
-        })
-
-    });
-
-    //reject button
-    $('.btn.btn-danger').on('click', function (e) {
-        e.preventDefault();
-
-        let id = $(this).attr('href').split("/")[2];
-        data = { "status": "REJECT" }
-
-        $.get('http://localhost:3001/api/history/' + id, function (history) {
-            if (history[0].type == "IMPORT") {
-                $.ajax({
-                    type: 'PUT',
-                    url: 'http://localhost:3001/api/history/update/' + id,
-                    contentType: 'application/json',
-                    data: JSON.stringify(data)
-                }).done(() => {
-                    window.location.href = 'http://localhost:8080/admin';
-                })
-            }
-            else {
-                //do reject export
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/export/reject/' + id,
-                    contentType: 'application/json',
-                    data: JSON.stringify(data)
-                }).done(() => {
-                    window.location.href = 'http://localhost:8080/admin';
-                })
-            }
-        })
-    });
 })
