@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    let iCount = 0;
-    let eCount = 0;
+
+    let count = 0;
 
     const dateConvert = (date) => {
         return moment(date).format('DD/MM/YYYY - HH:mm:ss');
@@ -12,15 +12,11 @@ $(document).ready(function () {
                 $(row).find('td:eq(1)')
                     .css('color', 'green')
                     .css('font-weight', 'bold');
-
-                iCount++;
             }
             else if (data[1] == "EXPORT") {
                 $(row).find('td:eq(1)')
                     .css('color', 'red')
                     .css('font-weight', 'bold');
-
-                eCount++;
             }
             if (data[3] == "ACCEPT") {
                 $(row).find('td:eq(3)')
@@ -37,6 +33,13 @@ $(document).ready(function () {
         },order: [[ 0, "desc" ]]
     });
 
-    $('#ib').text(`นำเข้า ${iCount} รายการ`);
-    $('#eb').text(`นำออก ${eCount} รายการ`);
+    $.get('http://localhost:3001/api/history/count/import', function (item) {
+        count = JSON.stringify(item[0]).split(":")[1].replace("}","")
+        $('#ib').text(`นำเข้า ${count} รายการ`);
+    });
+
+    $.get('http://localhost:3001/api/history/count/export', function (item) {
+        count = JSON.stringify(item[0]).split(":")[1].replace("}","")
+        $('#eb').text(`นำออก ${count} รายการ`);
+    });
 })
