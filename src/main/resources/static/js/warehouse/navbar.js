@@ -14,6 +14,7 @@ $(document).ready(function () {
             localStorage.removeItem('session');
             window.location.href = 'http://localhost:8080/home';
         })
+        $('#adminNav').attr("href","admin")
     }
 
     $.get('http://localhost:3001/api/history/pending/count', function (item) {

@@ -19,21 +19,27 @@
   </div>
   <script>
     $(document).ready(function () {
+
+      let session = localStorage.getItem("session")
+      if (session !== null) {
+        window.location.href = 'http://localhost:8080/admin';
+      } 
+
       $('#loginBtn').on('click', function (event) {
         event.preventDefault();
 
-        let data = {"username":$('#exampleInputEmail1').val() , "password":$('#exampleInputPassword1').val()}
+        let data = { "username": $('#exampleInputEmail1').val(), "password": $('#exampleInputPassword1').val() }
 
         $.ajax({
           type: 'POST',
           url: 'http://localhost:3001/api/login',
           contentType: 'application/json',
           data: JSON.stringify(data)
-        }).done((res) =>{
-          let user = {"username":res[0].username,"role":res[0].role,"id":res[0].id}
+        }).done((res) => {
+          let user = { "username": res[0].username, "role": res[0].role, "id": res[0].id }
           localStorage.setItem('session', JSON.stringify(user));
           window.location.href = 'http://localhost:8080/admin';
-        }).fail(()=>{
+        }).fail(() => {
           $('#errA').remove();
           $('#form-container').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">Incorrect username or password</div>`);
         })
@@ -41,12 +47,12 @@
     })
   </script>
   <style>
-    .login-container{
+    .login-container {
       padding: 75px 100px;
       box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
     }
 
-    .login-container button{
+    .login-container button {
       padding: 15px 25px;
     }
   </style>
