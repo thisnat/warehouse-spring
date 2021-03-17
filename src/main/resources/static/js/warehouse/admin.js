@@ -31,7 +31,7 @@ $(document).ready(function () {
 
                 Swal.fire({
                     icon: "question",
-                    title: "ต้องการยืนยันใช่หรือไม่ ?",
+                    title: "ต้องการยืนยัน\nใช่หรือไม่ ?",
                     showCancelButton: true,
                     confirmButtonText: `ใช่`,
                     cancelButtonText: `ไม่`,
@@ -74,7 +74,7 @@ $(document).ready(function () {
 
                 Swal.fire({
                     icon: "question",
-                    title: "ต้องการปฏิเสธใช่หรือไม่ ?",
+                    title: "ต้องการปฏิเสธ\nใช่หรือไม่ ?",
                     showCancelButton: true,
                     confirmButtonText: `ใช่`,
                     cancelButtonText: `ไม่`,

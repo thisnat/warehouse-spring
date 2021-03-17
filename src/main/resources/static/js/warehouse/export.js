@@ -79,7 +79,11 @@ $(document).ready(function () {
 
         $.get('http://localhost:3001/api/cart/', function (cart) {
             if (cart[0] === undefined) {
-                alert("รายการสินค้าว่าง");
+                Swal.fire(
+                    'รายการสินค้าว่าง',
+                    '',
+                    'error'
+                )
             }
             else {
                 let history;
@@ -87,7 +91,7 @@ $(document).ready(function () {
 
                 Swal.fire({
                     icon: "question",
-                    title: "ต้องการนำเข้าสินค้าใช่หรือไม่ ?",
+                    title: "ต้องการนำเข้าสินค้า\nใช่หรือไม่ ?",
                     showCancelButton: true,
                     confirmButtonText: `ใช่`,
                     cancelButtonText: `ไม่`,
@@ -95,7 +99,7 @@ $(document).ready(function () {
                     if (result.isConfirmed) {
                         if (session === null) {
                             history = { "type": "EXPORT", "status": "PENDING", "note": "none" }
-                            msg = "สร้างรายการแล้ว กรุณารอผู้ดูแลระบบทำการยืนยัน"
+                            msg = "สร้างรายการแล้ว\nกรุณารอผู้ดูแลระบบทำการยืนยัน"
                         } else {
                             history = { "type": "EXPORT", "status": "ACCEPT", "note": "none" }
                             msg = "นำออกสินค้าแล้ว"

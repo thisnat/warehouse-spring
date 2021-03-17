@@ -41,7 +41,7 @@ $(document).ready(function () {
 
             Swal.fire({
                 icon: "question",
-                title: "ต้องการนำเข้าสินค้าใช่หรือไม่ ?",
+                title: "ต้องการนำเข้าสินค้า\nใช่หรือไม่ ?",
                 showCancelButton: true,
                 confirmButtonText: `ใช่`,
                 cancelButtonText: `ไม่`,
@@ -66,7 +66,7 @@ $(document).ready(function () {
                         }).done((res) => {
                             Swal.fire({
                                 icon: "success",
-                                title: "สร้างรายการแล้ว กรุณารอผู้ดูแลระบบทำการยืนยัน",
+                                title: "สร้างรายการแล้ว\nกรุณารอผู้ดูแลระบบทำการยืนยัน",
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = "http://localhost:8080/history/";
