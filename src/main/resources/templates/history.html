@@ -25,7 +25,7 @@
                     <td th:text="${history.id}" style="text-align: center; font-size: 18px;"></td>
                     <td th:text="${history.type}" style="text-align: center; font-size: 20px;"></td>
                     <td th:text="${history.createDate}" style="text-align: center; font-size: 18px;"></td>
-                    <td th:text="${history.status}" style="text-align: center; font-style: italic;"></td>
+                    <td th:text="${history.status}" style="text-align: center; font-weight: bold;"></td>
                     <td style="text-align: center;">
                         <a class="btn btn-primary" th:href="@{/history/{id}(id=${history.id})}" target="_blank">ข้อมูล</a>
                     </td>

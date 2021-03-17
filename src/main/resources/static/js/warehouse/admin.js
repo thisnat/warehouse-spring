@@ -3,13 +3,6 @@ $(document).ready(function () {
 
     if (session === null) {
         window.location.href = 'http://localhost:8080/admin/login';
-    } else {
-        $('#logoutBtn').on('click', function (e) {
-            e.preventDefault();
-
-            localStorage.removeItem('session');
-            window.location.href = 'http://localhost:8080/home';
-        })
     }
 
     const dateConvert = (date) => {
@@ -36,29 +29,39 @@ $(document).ready(function () {
                 let id = $(this).attr('href').split("/")[2];
                 data = { "status": "ACCEPT" }
 
-                $.get('http://localhost:3001/api/history/' + id, function (history) {
-                    if (history[0].type == "IMPORT") {
-                        //do accept import
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://localhost:3001/api/products/import/accept/' + id,
-                            contentType: 'application/json',
-                            data: JSON.stringify(data)
-                        }).done(() => {
-                            window.location.href = 'http://localhost:8080/admin';
+                Swal.fire({
+                    icon: "question",
+                    title: "ต้องการยืนยันใช่หรือไม่ ?",
+                    showCancelButton: true,
+                    confirmButtonText: `ใช่`,
+                    cancelButtonText: `ไม่`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.get('http://localhost:3001/api/history/' + id, function (history) {
+                            if (history[0].type == "IMPORT") {
+                                //do accept import
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'http://localhost:3001/api/products/import/accept/' + id,
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(data)
+                                }).done(() => {
+                                    window.location.href = 'http://localhost:8080/admin';
+                                })
+                            }
+                            else {
+                                $.ajax({
+                                    type: 'PUT',
+                                    url: 'http://localhost:3001/api/history/update/' + id,
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(data)
+                                }).done(() => {
+                                    window.location.href = 'http://localhost:8080/admin';
+                                })
+                            }
                         })
                     }
-                    else {
-                        $.ajax({
-                            type: 'PUT',
-                            url: 'http://localhost:3001/api/history/update/' + id,
-                            contentType: 'application/json',
-                            data: JSON.stringify(data)
-                        }).done(() => {
-                            window.location.href = 'http://localhost:8080/admin';
-                        })
-                    }
-                })
+                });
 
             });
 
@@ -69,29 +72,39 @@ $(document).ready(function () {
                 let id = $(this).attr('href').split("/")[2];
                 data = { "status": "REJECT" }
 
-                $.get('http://localhost:3001/api/history/' + id, function (history) {
-                    if (history[0].type == "IMPORT") {
-                        $.ajax({
-                            type: 'PUT',
-                            url: 'http://localhost:3001/api/history/update/' + id,
-                            contentType: 'application/json',
-                            data: JSON.stringify(data)
-                        }).done(() => {
-                            window.location.href = 'http://localhost:8080/admin';
+                Swal.fire({
+                    icon: "question",
+                    title: "ต้องการปฏิเสธใช่หรือไม่ ?",
+                    showCancelButton: true,
+                    confirmButtonText: `ใช่`,
+                    cancelButtonText: `ไม่`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.get('http://localhost:3001/api/history/' + id, function (history) {
+                            if (history[0].type == "IMPORT") {
+                                $.ajax({
+                                    type: 'PUT',
+                                    url: 'http://localhost:3001/api/history/update/' + id,
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(data)
+                                }).done(() => {
+                                    window.location.href = 'http://localhost:8080/admin';
+                                })
+                            }
+                            else {
+                                //do reject export
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'http://localhost:3001/api/products/export/reject/' + id,
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(data)
+                                }).done(() => {
+                                    window.location.href = 'http://localhost:8080/admin';
+                                })
+                            }
                         })
                     }
-                    else {
-                        //do reject export
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://localhost:3001/api/products/export/reject/' + id,
-                            contentType: 'application/json',
-                            data: JSON.stringify(data)
-                        }).done(() => {
-                            window.location.href = 'http://localhost:8080/admin';
-                        })
-                    }
-                })
+                });
             });
         }
     });

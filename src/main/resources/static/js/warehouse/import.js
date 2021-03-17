@@ -1,83 +1,114 @@
 $(document).ready(function () {
     let errType = "";
-    let session = localStorage.getItem("session")
+    let session = localStorage.getItem("session");
 
     function isEmpty(str) {
-        return str.replace(/^\s+|\s+$/g, '').length == 0;
+        return str.replace(/^\s+|\s+$/g, "").length == 0;
     }
 
     const isBelowZero = () => {
         let zero = false;
-        if ($('#inputQuantity').val() <= 0) {
+        if ($("#inputQuantity").val() <= 0) {
             errType = "จำนวนต้องมากกว่า 0";
             zero = true;
         }
-        if ($('#inputSafetyStock').val() <= 0) {
+        if ($("#inputSafetyStock").val() <= 0) {
             errType = "Safety Stock ต้องมากกว่า 0";
             zero = true;
         }
-        if ($('#inputPrice').val() <= 0) {
+        if ($("#inputPrice").val() <= 0) {
             errType = "ราคาต้องมากกว่า 0";
             zero = true;
         }
         return zero;
-    }
+    };
 
-    $('#submitBtn').on('click', function (e) {
+    $("#submitBtn").on("click", function (e) {
         e.preventDefault();
 
-        if ($('#inputName').val() == "" || isEmpty($('#inputName').val())) {
-            $('#errA').remove();
-            $('#btn-container').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">กรุณาใส่ชื่อสินค้า</div>`);
-        }
-        else if (isBelowZero()) {
-            $('#errA').remove();
-            $('#btn-container').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">${errType}</div>`);
-        }
-        else {
+        if ($("#inputName").val() == "" || isEmpty($("#inputName").val())) {
+            $("#errA").remove();
+            $("#btn-container").append(
+                `<div class="alert alert-danger mt-3" role="alert" id="errA">กรุณาใส่ชื่อสินค้า</div>`
+            );
+        } else if (isBelowZero()) {
+            $("#errA").remove();
+            $("#btn-container").append(
+                `<div class="alert alert-danger mt-3" role="alert" id="errA">${errType}</div>`
+            );
+        } else {
             let product;
 
-            if (session === null) {
-                product = {
-                    "name": $('#inputName').val(), "quantity": $('#inputQuantity').val(), "price": $('#inputPrice').val(),
-                    "safetyStock": $('#inputSafetyStock').val(), "note": $('#inputNote').val(),
-                    "type": "IMPORT", "status": "PENDING"
+            Swal.fire({
+                icon: "question",
+                title: "ต้องการนำเข้าสินค้าใช่หรือไม่ ?",
+                showCancelButton: true,
+                confirmButtonText: `ใช่`,
+                cancelButtonText: `ไม่`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (session === null) {
+                        product = {
+                            name: $("#inputName").val(),
+                            quantity: $("#inputQuantity").val(),
+                            price: $("#inputPrice").val(),
+                            safetyStock: $("#inputSafetyStock").val(),
+                            note: $("#inputNote").val(),
+                            type: "IMPORT",
+                            status: "PENDING",
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:3001/api/products/import/",
+                            contentType: "application/json",
+                            data: JSON.stringify(product),
+                        }).done((res) => {
+                            Swal.fire({
+                                icon: "success",
+                                title: "สร้างรายการแล้ว กรุณารอผู้ดูแลระบบทำการยืนยัน",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "http://localhost:8080/history/";
+                                }
+                            });
+                        });
+                    } else {
+                        product = {
+                            name: $("#inputName").val(),
+                            quantity: $("#inputQuantity").val(),
+                            price: $("#inputPrice").val(),
+                            safetyStock: $("#inputSafetyStock").val(),
+                            note: $("#inputNote").val(),
+                            type: "IMPORT",
+                            status: "ACCEPT",
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:3001/api/products/import/",
+                            contentType: "application/json",
+                            data: JSON.stringify(product),
+                        }).done((res) => {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost:3001/api/products/add/",
+                                contentType: "application/json",
+                                data: JSON.stringify(product),
+                            }).done((res) => {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "นำเข้าสินค้าแล้ว",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = "http://localhost:8080/history/";
+                                    }
+                                });
+                            });
+                        });
+                    }
                 }
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/import/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(product)
-                }).done((res) => {
-                    window.location.href = 'http://localhost:8080/history/';
-                });
-
-            } else {
-                product = {
-                    "name": $('#inputName').val(), "quantity": $('#inputQuantity').val(), "price": $('#inputPrice').val(),
-                    "safetyStock": $('#inputSafetyStock').val(), "note": $('#inputNote').val(),
-                    "type": "IMPORT", "status": "ACCEPT"
-                }
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/import/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(product)
-                }).done((res) => {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://localhost:3001/api/products/add/',
-                        contentType: 'application/json',
-                        data: JSON.stringify(product)
-                    }).done((res) => {
-                        window.location.href = 'http://localhost:8080/history/';
-                    });
-                });
-            }
-
-
+            });
         }
-    })
+    });
 });

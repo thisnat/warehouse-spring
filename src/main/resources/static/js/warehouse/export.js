@@ -83,19 +83,39 @@ $(document).ready(function () {
             }
             else {
                 let history;
+                let msg = "";
 
-                if (session === null) {
-                    history = { "type": "EXPORT", "status": "PENDING", "note": "none" }
-                } else {
-                    history = { "type": "EXPORT", "status": "ACCEPT", "note": "none" }
-                }
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/exportall/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(history)
-                }).done((res) => {
-                    window.location.href = 'http://localhost:8080/history/';
+                Swal.fire({
+                    icon: "question",
+                    title: "ต้องการนำเข้าสินค้าใช่หรือไม่ ?",
+                    showCancelButton: true,
+                    confirmButtonText: `ใช่`,
+                    cancelButtonText: `ไม่`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (session === null) {
+                            history = { "type": "EXPORT", "status": "PENDING", "note": "none" }
+                            msg = "สร้างรายการแล้ว กรุณารอผู้ดูแลระบบทำการยืนยัน"
+                        } else {
+                            history = { "type": "EXPORT", "status": "ACCEPT", "note": "none" }
+                            msg = "นำออกสินค้าแล้ว"
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:3001/api/products/exportall/',
+                            contentType: 'application/json',
+                            data: JSON.stringify(history)
+                        }).done((res) => {
+                            Swal.fire({
+                                icon: "success",
+                                title: msg,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "http://localhost:8080/history/";
+                                }
+                            });
+                        });
+                    }
                 });
             }
         });

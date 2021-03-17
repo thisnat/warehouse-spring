@@ -39,47 +39,71 @@ $(document).ready(function () {
         if (sq != "" && sq > 0) {
             let product;
 
-            if (session === null) {
-                product = {
-                    "name": pProduct.name, "quantity": sq, "price": pProduct.price,
-                    "safetyStock": pProduct.safetyStock, "note": pProduct.note, "productId": pProduct.id,
-                    "type": "IMPORT", "status": "PENDING"
+            Swal.fire({
+                icon: "question",
+                title: "ต้องอัพเดทจำนวนสินค้าใช่หรือไม่ ?",
+                showCancelButton: true,
+                confirmButtonText: `ใช่`,
+                cancelButtonText: `ไม่`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (session === null) {
+                        product = {
+                            "name": pProduct.name, "quantity": sq, "price": pProduct.price,
+                            "safetyStock": pProduct.safetyStock, "note": pProduct.note, "productId": pProduct.id,
+                            "type": "IMPORT", "status": "PENDING"
+                        }
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:3001/api/products/import/',
+                            contentType: 'application/json',
+                            data: JSON.stringify(product)
+                        }).done((res) => {
+                            Swal.fire({
+                                icon: "success",
+                                title: "สร้างรายการแล้ว กรุณารอผู้ดูแลระบบทำการยืนยัน",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "http://localhost:8080/history/";
+                                }
+                            });
+                        });
+                    }
+                    else {
+                        product = {
+                            "name": pProduct.name, "quantity": sq, "price": pProduct.price,
+                            "safetyStock": pProduct.safetyStock, "note": pProduct.note, "productId": pProduct.id,
+                            "type": "IMPORT", "status": "ACCEPT"
+                        }
+
+                        let uQuantity = { "quantity": pProduct.quantity + parseInt(sq) }
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:3001/api/products/import/',
+                            contentType: 'application/json',
+                            data: JSON.stringify(product)
+                        }).done((res) => {
+                            $.ajax({
+                                type: 'PUT',
+                                url: 'http://localhost:3001/api/products/' + pProduct.id,
+                                contentType: 'application/json',
+                                data: JSON.stringify(uQuantity)
+                            }).done((res) => {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "อัพเดทจำนวนสินค้าแล้ว",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = "http://localhost:8080/history/";
+                                    }
+                                });
+                            })
+                        });
+                    }
                 }
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/import/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(product)
-                }).done((res) => {
-                    window.location.href = 'http://localhost:8080/history/';
-                });
-            }
-            else {
-                product = {
-                    "name": pProduct.name, "quantity": sq, "price": pProduct.price,
-                    "safetyStock": pProduct.safetyStock, "note": pProduct.note, "productId": pProduct.id,
-                    "type": "IMPORT", "status": "ACCEPT"
-                }
-
-                let uQuantity = { "quantity": pProduct.quantity + parseInt(sq) }
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:3001/api/products/import/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(product)
-                }).done((res) => {
-                    $.ajax({
-                        type: 'PUT',
-                        url: 'http://localhost:3001/api/products/' + pProduct.id,
-                        contentType: 'application/json',
-                        data: JSON.stringify(uQuantity)
-                    }).done((res) => {
-                        window.location.href = 'http://localhost:8080/history/';
-                    })
-                });
-            }
+            });
         }
         else {
             $('#errA').remove();
