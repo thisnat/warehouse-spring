@@ -21,15 +21,8 @@ $(document).ready(function () {
         cancelButtonText: `ไม่`,
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            icon: "success",
-            title: "ออกจากระบบแล้ว",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              localStorage.removeItem("session");
-              window.location.href = "http://localhost:8080/home";
-            }
-          });
+          localStorage.removeItem("session");
+          window.location.href = "http://localhost:8080/home";
         }
       });
     });
