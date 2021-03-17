@@ -22,7 +22,13 @@ $(document).ready(function () {
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem("session");
-          window.location.href = "http://localhost:8080/home";
+          Swal.fire(
+            'ออกจากระบบแล้ว',
+            '',
+            'success'
+          ).then(() => {
+            window.location.href = "http://localhost:8080/home";
+          })
         }
       });
     });
