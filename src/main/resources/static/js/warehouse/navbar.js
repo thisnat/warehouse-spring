@@ -32,7 +32,7 @@ $(document).ready(function () {
         }
       });
     });
-    $("#adminNav").attr("href", "admin");
+    $("#adminNav").attr("href", "/admin");
   }
 
   $.get("http://localhost:3001/api/history/pending/count", function (item) {

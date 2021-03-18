@@ -5,7 +5,7 @@
 <div class="container mt-4 mb-5" layout:fragment="content">
     <div class="preview">
         <h1><span id="typeBadge" class="badge bg-success" th:text="${history.type}"></span></h1>
-        <p id="previewID" class="lead" th:inline="text">History #[[${history.id}]]</p>
+        <p id="previewID" class="lead" th:inline="text">รายการ #[[${history.id}]]</p>
     </div>
     <p id="historyTime" th:text="${history.createDate}" style="font-size: 20px;"></p>
     <span id="historyStatus" th:text="${history.status}" style="font-size: 15px;"></span>
