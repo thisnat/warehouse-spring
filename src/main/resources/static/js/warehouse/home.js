@@ -31,8 +31,8 @@ $(document).ready(function () {
         $('#safeNoti').text(`ขาด stock ${pCount} รายการ`);
     });
 
-    $.get('http://localhost:3001/api/history/count', function (item) {
+    $.get('http://localhost:3001/api/products/count', function (item) {
         pCount = JSON.stringify(item[0]).split(":")[1].replace("}", "")
-        $('#historyNoti').text(`รายการทั้งหมด ${pCount} รายการ`);
+        $('#productNoti').text(`สินค้าทั้งหมด ${pCount} รายการ`);
     });
 });

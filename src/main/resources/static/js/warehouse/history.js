@@ -42,4 +42,9 @@ $(document).ready(function () {
         count = JSON.stringify(item[0]).split(":")[1].replace("}", "")
         $('#eb').text(`นำออก ${count} รายการ`);
     });
+
+    $.get('http://localhost:3001/api/history/count', function (item) {
+        pCount = JSON.stringify(item[0]).split(":")[1].replace("}", "")
+        $('#historyNoti').text(`ประวัติการนำเข้า/นำออก ${pCount} รายการ`);
+    });
 })

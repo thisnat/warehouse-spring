@@ -67,9 +67,14 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: "สร้างรายการแล้ว\nกรุณารอผู้ดูแลระบบทำการยืนยัน",
+                                confirmButtonText: `ดูรายการ`,
+                                showCancelButton: true,
+                                cancelButtonText: `ตกลง`
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = "http://localhost:8080/history/";
+                                } else {
+                                    window.location.href = "http://localhost:8080/import/";
                                 }
                             });
                         });
@@ -99,9 +104,14 @@ $(document).ready(function () {
                                 Swal.fire({
                                     icon: "success",
                                     title: "นำเข้าสินค้าแล้ว",
+                                    confirmButtonText: `ดูรายการ`,
+                                    showCancelButton: true,
+                                    cancelButtonText: `ตกลง`
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         window.location.href = "http://localhost:8080/history/";
+                                    } else {
+                                        window.location.href = "http://localhost:8080/import/";
                                     }
                                 });
                             });

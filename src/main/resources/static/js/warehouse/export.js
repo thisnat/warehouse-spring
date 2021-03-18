@@ -37,7 +37,7 @@ $(document).ready(function () {
         e.preventDefault();
         let sq = $('#sQuantity').val(); //input quantity
 
-        if (pProduct.quantity >= sq && sq != "" && sq != 0) {
+        if (pProduct.quantity >= sq && sq != "" && sq > 0) {
             let data = { "quantity": pProduct.quantity - sq }
 
             $.ajax({
@@ -80,7 +80,7 @@ $(document).ready(function () {
         $.get('http://localhost:3001/api/cart/', function (cart) {
             if (cart[0] === undefined) {
                 Swal.fire(
-                    'รายการสินค้าว่าง',
+                    'รายการนำออกว่าง',
                     '',
                     'error'
                 )
@@ -113,9 +113,14 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: msg,
+                                confirmButtonText: `ดูรายการ`,
+                                showCancelButton: true,
+                                cancelButtonText: `ตกลง`
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = "http://localhost:8080/history/";
+                                } else {
+                                    window.location.href = "http://localhost:8080/export/";
                                 }
                             });
                         });
