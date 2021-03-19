@@ -23,7 +23,7 @@
       let session = localStorage.getItem("session")
       if (session !== null) {
         window.location.href = 'http://localhost:8080/admin';
-      } 
+      }
 
       $('#loginBtn').on('click', function (event) {
         event.preventDefault();
@@ -38,7 +38,13 @@
         }).done((res) => {
           let user = { "username": res[0].username, "role": res[0].role, "id": res[0].id }
           localStorage.setItem('session', JSON.stringify(user));
-          window.location.href = 'http://localhost:8080/admin';
+          Swal.fire(
+            'เข้าสู่ระบบสำเร็จ',
+            '',
+            'success'
+          ).then((result) => {
+            window.location.href = 'http://localhost:8080/admin';
+          })
         }).fail(() => {
           $('#errA').remove();
           $('#form-container').append(`<div class="alert alert-danger mt-3" role="alert" id="errA">username หรือ password ไม่ถูกต้อง</div>`);

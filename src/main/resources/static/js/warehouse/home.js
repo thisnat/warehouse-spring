@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     $.get('http://localhost:3001/api/products/count/ofs', function (item) {
         pCount = JSON.stringify(item[0]).split(":")[1].replace("}", "")
-        $('#safeNoti').text(`ขาด stock ${pCount} รายการ`);
+        $('#safeNoti').text(`ขาด Stock ${pCount} รายการ`);
     });
 
     $.get('http://localhost:3001/api/products/count', function (item) {

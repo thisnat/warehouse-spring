@@ -27,17 +27,37 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body style="padding-top: 60px;">
+<body>
     <div th:replace="fragments/header :: header"></div>
     <div layout:fragment="content"></div>
+    
     <style>
         * {
             font-family: 'Kanit', sans-serif;
         }
+
         body {
             background-color: #f8f9fa;
+            overflow: auto;
+            padding-top: 60px;
+            height: 100%;
+        }
+
+        .container {
+            animation: text-load 250ms;
+        }
+
+        @keyframes text-load {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
         }
     </style>
+
 </body>
 
 </html>
