@@ -91,7 +91,7 @@ $(document).ready(function () {
 
                 Swal.fire({
                     icon: "question",
-                    title: "ต้องการนำเข้าสินค้า\nใช่หรือไม่ ?",
+                    title: "ต้องการนำออกสินค้า\nใช่หรือไม่ ?",
                     showCancelButton: true,
                     confirmButtonText: `ใช่`,
                     cancelButtonText: `ไม่`,
