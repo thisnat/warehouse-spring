@@ -1,5 +1,12 @@
 # warehouse project
-warehouse project @ 01418471 Introduction to Software Engineering
+**warehouse project** เป็น project ของวิชา ``01418471 Introduction to Software Engineering``
+เป็น web application ที่ช่วยในการบริหารจัดการ การนำเข้า/ส่งออกสินค้าในคลังสินค้า (warehouse) โดยมี feature หลักดังนี้
+- แสดงรายการสินค้าในคลังทั้งหมด
+- สามารถเพิ่มสินค้าเข้าไปในคลัง/update จำนวนสินค้าในคลังได้
+- สามารถส่งออกสินค้าในคลังได้ทีละหลายรายการ
+- มีการเก็บประวัติการนำเข้า/ส่งออก สินค้าในคลัง
+- เมื่อ user ทั่วไป (guest) ทำการนำเข้า/ส่งออกสินค้าจะติดสถานะ `PENDING` ไว้ต้องรอให้ผู้ดูแลระบบอนุมัติรายการนั้นๆ
+- ผู้ดูแลระบบสามารถนำเข้า/ส่งออก สินค้าได้ทันที
 
 ## setup
 - setup backend [warehouse-node](https://github.com/thisnat/warehouse-node)
