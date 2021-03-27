@@ -16,5 +16,10 @@ chmod +x mvnw
 ./mvnw spring-boot:run
 ```
 - access at http://localhost:8080/
+## admin user
+username | password
+------------ | -------------
+admin | warehouse
+admin2 | warehouse
 ## ui flow
 ![Ui Flow](https://i.imgur.com/BkSsY97.jpg)
