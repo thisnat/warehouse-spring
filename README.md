@@ -28,5 +28,6 @@ username | password
 ------------ | -------------
 admin | warehouse
 admin2 | warehouse
+- user admin ต้องเพิ่มจาก database โดยตรง
 ## ui flow
 ![Ui Flow](https://i.imgur.com/BkSsY97.jpg)
