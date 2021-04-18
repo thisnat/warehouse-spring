@@ -23,7 +23,7 @@
                     <td th:text="${product.quantity}" style="text-align: right;"></td>
                     <td th:text="${product.price}" style="text-align: right;"></td>
                     <td style="text-align: center;">
-                        <a class="btn btn-danger" th:href="@{/export/remove/{id}(id=${product.id})}">ลบรายการ</a>
+                        <a class="btn btn-danger" th:href="@{/remove/{id}(id=${product.id})}">ลบรายการ</a>
                     </td>
                 </tr>
             </tbody>

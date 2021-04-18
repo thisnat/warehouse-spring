@@ -37,6 +37,7 @@ public class ExportController {
         return "export";
     }
 
+    /*
     @PostMapping("/remove/{id}")
     @ResponseBody
     public String removeCartList(@PathVariable int id,Model model) {
@@ -61,6 +62,8 @@ public class ExportController {
 
         return productCart.toString();
     }
+
+     */
 
     @RequestMapping("/get/{id}")
     @ResponseBody

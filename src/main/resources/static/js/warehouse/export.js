@@ -136,7 +136,7 @@ $(document).ready(function () {
         let href = $(this).attr('href');
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080' + href,
+            url: 'http://localhost:3001/api/cart' + href,
             contentType: 'application/json'
         }).done((res) => {
             window.location.href = 'http://localhost:8080/export/';
