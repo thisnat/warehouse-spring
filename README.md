@@ -7,6 +7,14 @@
 - มีการเก็บประวัติการนำเข้า/ส่งออก สินค้าในคลัง
 - เมื่อ user ทั่วไป (guest) ทำการนำเข้า/ส่งออกสินค้าจะติดสถานะ `PENDING` ไว้ต้องรอให้ผู้ดูแลระบบอนุมัติรายการนั้นๆ
 - ผู้ดูแลระบบสามารถนำเข้า/ส่งออก สินค้าได้ทันที
+#### สมาชิก
+name | id
+------------ | -------------
+Nattawut Arayakittipong | 6110450111
+Kaweepong Meanghom | 6110450634
+Atawee Limsakul | 6110451011
+Sippagron Visaitsut | 6110450421
+Kantarat Krutta | 6110450651
 
 ## setup
 - setup backend [warehouse-node](https://github.com/thisnat/warehouse-node)
